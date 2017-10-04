@@ -5,7 +5,8 @@ declare var $:any;
 
 @Component({
   selector: 'overview-cmp',
-  templateUrl: './overview.component.html'
+  templateUrl: './overview.component.html',
+  styleUrls: ['./overview.component.css']
 })
 
 export class OverviewComponent implements OnInit{

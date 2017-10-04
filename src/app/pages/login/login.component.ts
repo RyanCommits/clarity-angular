@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit{
         loginPassword: ''
     };
 
-    errorMessage: string;
     loginError: string;
 
     constructor(
@@ -58,9 +57,9 @@ export class LoginComponent implements OnInit{
               // to share info about bad username vs bad password, attach more json elements
               // in the backend to errInfo
               if (errInfo.status === 401) {
-                this.loginError = 'Bad credentials';
+                this.loginError = 'Incorrect email or password. Try again.';
               } else {
-                this.errorMessage = 'Something went wrong. Try again later';
+                this.loginError = 'Something went wrong. Try again later';
               }
             }
           );
