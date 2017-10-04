@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/do';
 
 import { SignupInfo } from '../interfaces/signup-info';
+import { LoginInfo } from '../interfaces/login-info';
 
 import { environment } from '../../environments/environment';
 
@@ -21,7 +22,6 @@ export class AuthApiService {
   ) { }
 
   postSignup(userInfo: SignupInfo) {
-    console.log('service happened')
     return this.httpThang.post(
         this.baseUrl + '/api/process-signup',
         userInfo,
@@ -29,11 +29,39 @@ export class AuthApiService {
         { withCredentials: true }
       )
       .do((userInfo) => {
-        console.log('service subscribe happened')
         this.loginStatusSubject.next({
           isLoggedIn: true,
           userInfo: userInfo
         });
       });
+  }
+
+  getLoginStatus() {
+    // Get /checklogin
+    const loginStatusRequest =
+      this.httpThang.get(
+          this.baseUrl + '/api/checklogin',
+          { withCredentials: true }
+        );
+
+        loginStatusRequest.subscribe((loggedInInfo) => {
+          this.loginStatusSubject.next(loggedInInfo);
+        });
+
+    return loginStatusRequest;
+
+  }
+  // Post /process-login
+  postLogin(loginCredentials: LoginInfo) {
+      const loginRequest =  this.httpThang.post(
+        this.baseUrl + '/api/process-login',
+        loginCredentials,
+        { withCredentials: true }
+     );
+      loginRequest.subscribe((userInfo) => {
+       this.loginStatusSubject.next(userInfo);
+     });
+
+    return loginRequest;
   }
 }

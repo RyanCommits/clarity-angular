@@ -43,15 +43,15 @@ export class RegisterComponent implements OnInit{
         }
     };
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.checkFullPageBackgroundImage();
+     }
 
     signupSubmit() {
-        console.log('signup happened')
         this.authThang.postSignup(this.newUser)
           .subscribe(
             (userInfo) => {
-              this.routerThang.navigate(['']);
-              console.log('subscribe happened')
+              this.routerThang.navigate(['/login']);
             },
 
             (errInfo) => {
