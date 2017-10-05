@@ -1,3 +1,5 @@
+/* Card Styles */
+
 .entry-card {
     height: 337px;
     display: flex;
@@ -5,4 +7,62 @@
     background-image: url("../../../assets/img/background.jpg");
     background-size: cover;
     background-position: center;
+    position: relative;
+}
+.card-date{
+    font-size: 40px;
+}
+.card-month{
+    font-size: 20px;
+    font-weight: bold;
+}
+.date-container{
+    margin: 0 0 12px 20px;
+    color: white;
+}
+.overlay:before{
+    position: absolute;
+    content:" ";
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    display: block;
+    z-index:0;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 6px;
+  }
+.overlay:hover:before{
+    transition: background-color 0.5s ease;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Card Button Styles */
+
+.card-button-edit {
+    left: 40%;
+}
+.card-button-photo {
+    left: 58%;
+}
+.btn-github:hover{
+    background-color: rgba(232, 229, 229, 0.2);
+}
+.card-button-edit, .card-button-photo{
+    padding: 11px 16px;
+    border-color: #e2e2e2;
+    color: #e2e2e2;
+    bottom: 44%;
+    font-size: 22px;
+    border-radius: 35px;
+    transform: translateX(-50%);
+    position: absolute;
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+}
+.entry-card:hover > .card-button-edit, .entry-card:hover > .card-button-photo  {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s linear 0s, opacity 500ms;
 }
