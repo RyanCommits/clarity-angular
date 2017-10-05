@@ -44,7 +44,7 @@ export class AuthApiService {
           { withCredentials: true }
         );
 
-        loginStatusRequest.subscribe((loggedInInfo) => {
+        loginStatusRequest.do((loggedInInfo) => {
           this.loginStatusSubject.next(loggedInInfo);
         });
 
@@ -58,10 +58,26 @@ export class AuthApiService {
         loginCredentials,
         { withCredentials: true }
      );
-      loginRequest.subscribe((userInfo) => {
-       this.loginStatusSubject.next(userInfo);
+      loginRequest.do((userInfo) => {
+       this.loginStatusSubject.next({
+          isLoggedIn: true,
+          userInfo: userInfo
+        });
      });
 
     return loginRequest;
+  }
+
+  logOut() {
+    const logoutRequest =
+      this.httpThang.delete(
+        this.baseUrl + '/api/logout',
+        { withCredentials: true }
+    );
+
+    logoutRequest.do(() => {
+      this.loginStatusSubject.next({ isLoggedIn: false });
+    });
+    return logoutRequest;
   }
 }

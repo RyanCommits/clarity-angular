@@ -3,7 +3,9 @@ import { ROUTES } from '../.././sidebar/sidebar.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
-var misc:any ={
+import { AuthApiService } from '../../services/auth-api.service';
+
+const misc:any = {
     navbar_menu_visible: 0,
     active_collapse: true,
     disabled_collapse_init: 0,
@@ -25,7 +27,12 @@ export class NavbarComponent implements OnInit{
 
     @ViewChild("navbar-cmp") button;
 
-    constructor(location:Location, private renderer : Renderer, private element : ElementRef) {
+    constructor(
+        location: Location,
+        private renderer: Renderer,
+        private element: ElementRef,
+        private authThang: AuthApiService,
+        private routerThang: Router) {
         this.location = location;
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
@@ -122,5 +129,13 @@ export class NavbarComponent implements OnInit{
     getPath(){
         // console.log(this.location);
         return this.location.prepareExternalUrl(this.location.path());
+    }
+    logMeOut() {
+        this.authThang.logOut()
+            .subscribe(
+                (apiResponse) => {
+                    this.routerThang.navigate(['/login']);
+                }
+            );
     }
 }

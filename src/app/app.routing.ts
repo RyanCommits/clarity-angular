@@ -11,6 +11,7 @@ export const AppRoutes: Routes = [{
     },{
         path: '',
         component: AdminLayoutComponent,
+        // canActivate: [ NeedsLoginGuardService ]
         children: [{
             path: 'dashboard',
             loadChildren: './dashboard/dashboard.module#DashboardModule'

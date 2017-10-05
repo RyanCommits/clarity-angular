@@ -10,7 +10,14 @@ declare var $:any;
 })
 
 export class OverviewComponent implements OnInit{
-    initCirclePercentage(){
+
+    weekClickCount = 0;
+    weekDates: any[] = [];
+    monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN",
+        "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
+    ];
+
+    initCirclePercentage() {
         $('#chartDashboard, #chartOrders, #chartNewVisitors, #chartSubscriptions, #chartDashboardDoc, #chartOrdersDoc').easyPieChart({
             lineWidth: 6,
             size: 160,
@@ -22,96 +29,33 @@ export class OverviewComponent implements OnInit{
     }
 
     ngOnInit(){
-        /*  **************** Chart Total Earnings - single line ******************** */
-        var dataPrice = {
-            labels: ['Jan','Feb','Mar', 'April', 'May', 'June'],
-            series: [
-                [230, 340, 400, 300, 570, 500, 800]
-            ]
-        };
+        // find date of previous Monday
+        this.getMonday(new Date(), this.weekClickCount);
 
-        var optionsPrice = {
-            showPoint: false,
-            lineSmooth: true,
-            height: "210px",
-            axisX: {
-                showGrid: false,
-                showLabel: true
-            },
-            axisY: {
-                offset: 40,
-                showGrid: false
-            },
-            low: 0,
-            // high: 'auto',
-            //   classNames: {
-            //       line: 'ct-line ct-green'
-            //   }
-        };
-
-        var chartTotalEarnings = new Chartist.Line('#chartTotalEarnings', dataPrice, optionsPrice);
-
-        /*  **************** Chart Subscriptions - single line ******************** */
-
-        var dataDays = {
-            labels: ['M','T','W', 'T', 'F', 'S','S'],
-            series: [
-                [60, 50, 30, 50, 70, 60, 90, 100]
-            ]
-        };
-
-        var optionsDays: any = {
-            showPoint: false,
-            lineSmooth: true,
-            height: "210px",
-            axisX: {
-                showGrid: false,
-                showLabel: true
-            },
-            axisY: {
-                offset: 40,
-                showGrid: false
-            },
-            low: 0,
-            high: 'auto',
-            classNames: {
-                line: 'ct-line ct-red'
-            }
-        };
-
-        var chartTotalSubscriptions = new Chartist.Line('#chartTotalSubscriptions', dataDays, optionsDays);
-
-        /*  **************** Chart Total Downloads - single line ******************** */
-
-        var dataDownloads = {
-            labels: ['2009','2010','2011', '2012', '2013', '2014'],
-            series: [
-                [1200, 1000, 3490, 8345, 3256, 2566]
-            ]
-        };
-
-        var optionsDownloads: any = {
-        showPoint: false,
-            lineSmooth: true,
-            height: "210px",
-            axisX: {
-                showGrid: false,
-                showLabel: true
-            },
-            axisY: {
-                offset: 40,
-                showGrid: false
-            },
-            low: 0,
-            high: 'auto',
-            classNames: {
-                line: 'ct-line ct-orange'
-            }
-        };
-
-        var chartTotalDownloads = new Chartist.Line('#chartTotalDownloads', dataDownloads, optionsDownloads);
     }
-    ngAfterViewInit(){
+    ngAfterViewInit() {
         this.initCirclePercentage();
+    }
+
+    getMonday(date, week) {
+        this.weekDates = [];
+        date = new Date(date);
+        const day = date.getDay(),
+            diff = date.getDate() - day + (day === 0 ? -6:1); // adjust when day is sunday
+        // create an array for 7 dates of the week
+
+        for (let i = 0; i < 7; i++) {
+            this.weekDates.push(new Date(date.setDate(diff + i + (7 * week))));
+        }
+    }
+
+    nextWeek() {
+        this.weekClickCount++;
+        this.getMonday(new Date(), this.weekClickCount)
+    }
+
+    prevWeek() {
+        this.weekClickCount--;
+        this.getMonday(new Date(), this.weekClickCount)
     }
 }

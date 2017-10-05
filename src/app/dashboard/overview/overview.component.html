@@ -1,6 +1,10 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
+            <button (click)="prevWeek()">Prev</button>
+            <button (click)="nextWeek()">Next</button>
+        </div>
+        <div class="row">
             <div class="col-lg-4 col-sm-6">
                 <div class="entry-card card overlay">
                     <button class="btn btn-icon btn-github card-button-edit">
@@ -11,8 +15,9 @@
                     </button>
                     <div class="card-footer">
                         <div class="footer-title date-container"> 
-                            <span class="card-date">26</span>
-                            <p class="card-month">SEP</p>
+                            <span class="card-date">{{ weekDates[0].getDate() }}</span>
+                            <!-- pass month number into array of months for string -->
+                            <p class="card-month">{{ monthNames[weekDates[0].getMonth()] }}</p>
                         </div>
                     </div>
                 </div>
@@ -27,8 +32,8 @@
                     </button>
                     <div class="card-footer">
                         <div class="footer-title date-container"> 
-                            <span class="card-date">27</span>
-                            <p class="card-month">SEP</p>
+                            <span class="card-date">{{ weekDates[1].getDate() }}</span>
+                            <p class="card-month">{{ monthNames[weekDates[1].getMonth()] }}</p>
                         </div>
                     </div>
                 </div>
@@ -41,8 +46,8 @@
                     </button>
                     <div class="card-footer">
                         <div class="footer-title date-container"> 
-                            <span class="card-date">28</span>
-                            <p class="card-month">SEP</p>
+                            <span class="card-date">{{ weekDates[2].getDate() }}</span>
+                            <p class="card-month">{{ monthNames[weekDates[2].getMonth()] }}</p>
                         </div>
                     </div>
                 </div>
@@ -57,8 +62,8 @@
                     </button>
                     <div class="card-footer">
                         <div class="footer-title date-container"> 
-                            <span class="card-date">29</span>
-                            <p class="card-month">SEP</p>
+                            <span class="card-date">{{ weekDates[3].getDate() }}</span>
+                            <p class="card-month">{{ monthNames[weekDates[3].getMonth()] }}</p>
                         </div>
                     </div>
                 </div>
@@ -71,8 +76,8 @@
                     </button>
                     <div class="card-footer">
                         <div class="footer-title date-container"> 
-                            <span class="card-date">30</span>
-                            <p class="card-month">SEP</p>
+                            <span class="card-date">{{ weekDates[4].getDate() }}</span>
+                            <p class="card-month">{{ monthNames[weekDates[4].getMonth()] }}</p>
                         </div>
                     </div>
                 </div>
@@ -85,8 +90,8 @@
                     </button>
                     <div class="card-footer">
                         <div class="footer-title date-container"> 
-                            <span class="card-date">1</span>
-                            <p class="card-month">OCT</p>
+                            <span class="card-date">{{ weekDates[5].getDate() }}</span>
+                            <p class="card-month">{{ monthNames[weekDates[5].getMonth()] }}</p>
                         </div>
                     </div>
                 </div>
@@ -101,14 +106,14 @@
                     </button>
                     <div class="card-footer">
                         <div class="footer-title date-container"> 
-                            <span class="card-date">2</span>
-                            <p class="card-month">Oct</p>
+                            <span class="card-date">{{ weekDates[6].getDate() }}</span>
+                            <p class="card-month">{{ monthNames[weekDates[6].getMonth()] }}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- <div class="row">
+        <div class="row">
             <div class="col-lg-3 col-sm-6">
                 <div class="card card-circle-chart" data-background-color="blue">
                     <div class="card-header text-center">
@@ -153,6 +158,6 @@
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
     </div>
 </div>
