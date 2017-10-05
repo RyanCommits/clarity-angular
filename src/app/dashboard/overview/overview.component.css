@@ -1,4 +1,4 @@
-/* Card Styles */
+/* Filled Card Styles */
 
 .entry-card {
     height: 337px;
@@ -57,12 +57,46 @@
     border-radius: 35px;
     transform: translateX(-50%);
     position: absolute;
+    visibility: hidden;
+    opacity: 0;
+}
+.entry-card:hover > .card-button-edit, .entry-card:hover > .card-button-photo, .entry-card:hover > .card-button-add  {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s linear 0s, opacity 500ms;
+}
+
+/* Empty Card Styles */
+
+.empty {
+    background-image: url("");
+}
+.card-button-add{
+    left: 50%;
+    padding: 15px 20px;
+    border-color: #e2e2e2;
+    color: #e2e2e2;
+    bottom: 42%;
+    font-size: 23px;
+    border-radius: 35px;
+    transform: translateX(-50%);
     position: absolute;
     visibility: hidden;
     opacity: 0;
 }
-.entry-card:hover > .card-button-edit, .entry-card:hover > .card-button-photo  {
+.empty-prompt {
+    width: 80%;
+    left: 54%;
+    color: #e2e2e2;
+    bottom: 42%;
+    font-size: 26px;
+    transform: translateX(-50%);
+    position: absolute;
     visibility: visible;
     opacity: 1;
-    transition: visibility 0s linear 0s, opacity 500ms;
+}
+.entry-card:hover > .empty-prompt  {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 300ms, opacity 300ms;
 }
