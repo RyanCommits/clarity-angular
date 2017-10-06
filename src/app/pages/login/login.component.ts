@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit{
         this.authThang.postLogin(this.loginUser)
           .subscribe(
             (userInfo) => {
-              this.routerThang.navigate(['dashboard/overview']);
+              this.routerThang.navigate(['dashboard']);
             },
 
             (errInfo) => {

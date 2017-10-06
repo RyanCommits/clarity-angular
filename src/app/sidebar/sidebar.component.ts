@@ -22,12 +22,8 @@ export interface ChildrenItems {
 export const ROUTES: RouteInfo[] = [{
         path: '/dashboard',
         title: 'Dashboard',
-        type: 'sub',
-        icontype: 'ti-panel',
-        children: [
-            {path: 'overview', title: 'Overview', ab:'O'},
-            {path: 'stats', title: 'Stats', ab:'S'}
-        ]
+        type: 'link',
+        icontype: 'ti-panel'
     },{
         path: '/components',
         title: 'Components',

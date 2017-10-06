@@ -17,6 +17,7 @@ import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { AppRoutes } from './app.routing';
 
 import { AuthApiService } from './services/auth-api.service';
+import { EntryApiService } from './services/entry-api.service';
 
 @NgModule({
     imports:      [
@@ -36,7 +37,8 @@ import { AuthApiService } from './services/auth-api.service';
         AuthLayoutComponent,
     ],
     providers: [
-        AuthApiService
+        AuthApiService,
+        EntryApiService
     ],
     bootstrap:    [ AppComponent ]
 })

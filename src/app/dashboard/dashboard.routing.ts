@@ -6,9 +6,9 @@ import { StatsComponent } from './stats/stats.component';
 export const DashboardRoutes: Routes = [{
     path: '',
     children: [{
-        path: 'overview',
+        path: '',
         component: OverviewComponent
-    },{
+    }, {
         path: 'stats',
         component: StatsComponent
     }]

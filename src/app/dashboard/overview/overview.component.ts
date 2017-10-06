@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 
+import { EntryApiService } from '../../services/entry-api.service';
+import { AuthApiService } from '../../services/auth-api.service';
+import { environment } from '../../../environments/environment';
+
 declare var $:any;
 
 @Component({
@@ -55,6 +59,16 @@ export class OverviewComponent implements OnInit{
         "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
     ];
 
+    // backend request variables
+    userInfo: any;
+    entries: any[] = [];
+    // imageDomain = environment.apiUrl;
+
+    constructor(
+        private entryThang: EntryApiService,
+        private authThang: AuthApiService
+      ) { }
+
     initCirclePercentage() {
         $('#chartDashboard, #chartOrders, #chartNewVisitors, #chartSubscriptions, #chartDashboardDoc, #chartOrdersDoc').easyPieChart({
             lineWidth: 6,
@@ -66,10 +80,27 @@ export class OverviewComponent implements OnInit{
         });
     }
 
-    ngOnInit(){
+    ngOnInit() {
         // find date of previous Monday
         this.getMonday(new Date(), this.weekClickCount);
 
+        // get all entries of user
+        this.entryThang.getEntries()
+        .subscribe(
+            (entriesFromApi: any[]) => {
+                this.entries = entriesFromApi;
+                console.log(this.entries);
+            }
+        );
+        this.authThang.getLoginStatus()
+            .subscribe(
+            (loggedInInfo: any) => {
+                if (loggedInInfo.isLoggedIn) {
+                this.userInfo = loggedInInfo.userInfo;
+                console.log(this.userInfo)
+                }
+            }
+        );
     }
     ngAfterViewInit() {
         this.initCirclePercentage();
@@ -81,12 +112,13 @@ export class OverviewComponent implements OnInit{
         const day = date.getDay(),
             diff = date.getDate() - day + (day === 0 ? -6:1); // adjust when day is sunday
         // create an array for 7 dates of the week
-
+        // week determines user navigation through calendar, each click = 7 days later
         for (let i = 0; i < 7; i++) {
             this.weekDates.push(new Date(date.setDate(diff + i + (7 * week))));
         }
     }
 
+    // when User clicks next week or previous week
     nextWeek() {
         this.weekClickCount++;
         this.getMonday(new Date(), this.weekClickCount);
@@ -100,6 +132,7 @@ export class OverviewComponent implements OnInit{
     // delayNextWeek() {
     //     setTimeout(this.nextWeek(), 3000);
     // }
+    // controls states of animation
     onAnimate() {
         this.state === 'off' ? this.state = 'on' : this.state = 'off';
         console.log(this.state);
