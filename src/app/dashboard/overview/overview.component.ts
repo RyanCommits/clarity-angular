@@ -1,18 +1,56 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
+import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 
 declare var $:any;
 
 @Component({
   selector: 'overview-cmp',
   templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.css']
+  styleUrls: ['./overview.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+        state('off', style({
+            'opacity': '1',
+            transform: 'translateX(0)'
+        })),
+        state('on', style({
+            'opacity': '1',
+            transform: 'translateX(0)'
+        })),
+        transition('off <=> on', [
+            animate(500, keyframes([
+                style({
+                    transform: 'translateX(0)',
+                    opacity: 1,
+                    offset: 0
+                }),
+                style({
+                    transform: 'translateX(2%)',
+                    opacity: 0,
+                    offset: 0.4
+                }),
+                style({
+                    transform: 'translateX(1%)',
+                    opacity: 0.5,
+                    offset: 0.7
+                }),
+                style({
+                    transform: 'translateX(0)',
+                    opacity: 1,
+                    offset: 1
+                })
+            ]))
+        ]),
+    ])
+  ]
 })
 
 export class OverviewComponent implements OnInit{
 
     weekClickCount = 0;
     weekDates: any[] = [];
+    state = 'off';
     monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN",
         "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
     ];
@@ -51,11 +89,19 @@ export class OverviewComponent implements OnInit{
 
     nextWeek() {
         this.weekClickCount++;
-        this.getMonday(new Date(), this.weekClickCount)
+        this.getMonday(new Date(), this.weekClickCount);
     }
 
     prevWeek() {
         this.weekClickCount--;
         this.getMonday(new Date(), this.weekClickCount)
+    }
+
+    // delayNextWeek() {
+    //     setTimeout(this.nextWeek(), 3000);
+    // }
+    onAnimate() {
+        this.state === 'off' ? this.state = 'on' : this.state = 'off';
+        console.log(this.state);
     }
 }

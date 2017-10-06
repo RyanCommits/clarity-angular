@@ -1,12 +1,12 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
-            <button (click)="prevWeek()">Prev</button>
-            <button (click)="nextWeek()">Next</button>
+            <button (click)="prevWeek(); onAnimate()">Prev</button>
+            <button (click)="nextWeek(); onAnimate()">Next</button>
         </div>
         <div class="row">
             <div class="col-lg-4 col-sm-6">
-                <div class="entry-card card overlay">
+                <div [@fadeInOut]="state" class="entry-card card overlay">
                     <button class="btn btn-icon btn-github card-button-edit">
                         <i class="ti-pencil"></i>
                     </button>
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <div class="entry-card card overlay">
+                <div [@fadeInOut]="state" class="entry-card card overlay">
                     <button class="btn btn-icon btn-github card-button-edit">
                         <i class="ti-pencil"></i>
                     </button>
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <div class="entry-card card overlay empty">
+                <div [@fadeInOut]="state" class="entry-card card overlay empty">
                     <p class="empty-prompt">What Happened Today?</p>
                     <button class="btn btn-icon btn-github card-button-add">
                         <i class="ti-plus"></i>
@@ -55,7 +55,7 @@
         </div>
         <div class="row">
             <div class="col-lg-4 col-sm-6">
-                <div class="entry-card card overlay empty">
+                <div [@fadeInOut]="state" class="entry-card card overlay empty">
                     <p class="empty-prompt">What Happened Today?</p>
                     <button class="btn btn-icon btn-github card-button-add">
                         <i class="ti-plus"></i>
@@ -69,7 +69,7 @@
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <div class="entry-card card overlay empty">
+                <div [@fadeInOut]="state" class="entry-card card overlay empty">
                     <p class="empty-prompt">What Happened Today?</p>
                     <button class="btn btn-icon btn-github card-button-add">
                         <i class="ti-plus"></i>
@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <div class="entry-card card overlay empty">
+                <div [@fadeInOut]="state" class="entry-card card overlay empty">
                     <p class="empty-prompt">What Happened Today?</p>
                     <button class="btn btn-icon btn-github card-button-add">
                         <i class="ti-plus"></i>
@@ -99,7 +99,7 @@
         </div>
         <div class="row">
             <div class="col-lg-4 col-sm-6">
-                <div class="entry-card card overlay empty">
+                <div [@fadeInOut]="state" class="entry-card card overlay empty">
                     <p class="empty-prompt">What Happened Today?</p>
                     <button class="btn btn-icon btn-github card-button-add">
                         <i class="ti-plus"></i>

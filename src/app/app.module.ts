@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { APP_BASE_HREF } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 
@@ -26,7 +27,8 @@ import { AuthApiService } from './services/auth-api.service';
         SidebarModule,
         NavbarModule,
         FooterModule,
-        FixedPluginModule
+        FixedPluginModule,
+        BrowserAnimationsModule
     ],
     declarations: [
         AppComponent,
