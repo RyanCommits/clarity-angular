@@ -128,9 +128,9 @@ export class OverviewComponent implements OnInit{
         for (let i = 0; i < 7; i++) {
             this.weekDates.push(new Date(date.setDate(date.getDate() + 1)));
         }
-        // variables for the filter function
-        this.startDate = new Date(date.setDate(date.getDate() - 6));
-        this.endDate = new Date(date.setDate(date.getDate() + 6));
+        // variables for the filter function. sethours to not compare time, only the dates
+        this.startDate = new Date(new Date(date.setDate(date.getDate() - 6)).setHours(0,0,0,0));
+        this.endDate = new Date(new Date(date.setDate(date.getDate() + 6)).setHours(0,0,0,0));
     }
 
     // filter entries array based on date range. Date ranger provided by getMonday function
@@ -148,15 +148,13 @@ export class OverviewComponent implements OnInit{
     nextWeek() {
         this.weekClickCount++;
         this.getMonday(new Date(), this.weekClickCount);
-        console.log(this.startDate)
-        console.log(this.endDate)
+        this.filterEntries(this.entries, this.startDate, this.endDate)
     }
 
     prevWeek() {
         this.weekClickCount--;
         this.getMonday(new Date(), this.weekClickCount)
-        console.log(this.startDate)
-        console.log(this.endDate)
+        this.filterEntries(this.entries, this.startDate, this.endDate)
     }
 
     // delayNextWeek() {
