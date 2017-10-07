@@ -121,15 +121,16 @@ export class OverviewComponent implements OnInit{
         this.weekDates = [];
         date = new Date(date);
         const day = date.getDay(),
-            diff = date.getDate() - day + (day === 0 ? -6:1); // adjust when day is sunday
+            diff = date.getDate() - day + (day === 0 ? -6:1) - 1 + (7 * week) ; // adjust when day is sunday
+            date.setDate(diff);
         // create an array for 7 dates of the week
         // week determines user navigation through calendar, each click = 7 days later
         for (let i = 0; i < 7; i++) {
-            this.weekDates.push(new Date(date.setDate(diff + i + (7 * week))));
+            this.weekDates.push(new Date(date.setDate(date.getDate() + 1)));
         }
         // variables for the filter function
-        this.startDate = new Date(date.setDate(diff + (7 * week)));
-        this.endDate = new Date(date.setDate(diff + 6 + (7 * week)));
+        this.startDate = new Date(date.setDate(date.getDate() - 6));
+        this.endDate = new Date(date.setDate(date.getDate() + 6));
     }
 
     // filter entries array based on date range. Date ranger provided by getMonday function
@@ -147,11 +148,15 @@ export class OverviewComponent implements OnInit{
     nextWeek() {
         this.weekClickCount++;
         this.getMonday(new Date(), this.weekClickCount);
+        console.log(this.startDate)
+        console.log(this.endDate)
     }
 
     prevWeek() {
         this.weekClickCount--;
         this.getMonday(new Date(), this.weekClickCount)
+        console.log(this.startDate)
+        console.log(this.endDate)
     }
 
     // delayNextWeek() {
@@ -161,6 +166,5 @@ export class OverviewComponent implements OnInit{
     // controls states of animation
     onAnimate() {
         this.state === 'off' ? this.state = 'on' : this.state = 'off';
-        console.log(this.state);
     }
 }
