@@ -6,111 +6,232 @@
         </div>
         <div class="row">
             <div class="col-lg-4 col-sm-6">
-                <div [@fadeInOut]="state" class="entry-card card overlay">
-                    <button class="btn btn-icon btn-github card-button-edit">
-                        <i class="ti-pencil"></i>
-                    </button>
-                    <button class="btn btn-icon btn-github card-button-photo">
-                        <i class="ti-camera"></i>
-                    </button>
-                    <div class="card-footer">
-                        <div class="footer-title date-container"> 
-                            <span class="card-date">{{ weekDates[0].getDate() }}</span>
-                            <!-- pass month number into array of months for string -->
-                            <p class="card-month">{{ monthNames[weekDates[0].getMonth()] }}</p>
+                <div *ngIf="entryInDatabase[0]; else noEntry0">
+                    <div [@fadeInOut]="state" class="entry-card card overlay">
+                        <button class="btn btn-icon btn-github card-button-edit">
+                            <i class="ti-pencil"></i>
+                        </button>
+                        <button class="btn btn-icon btn-github card-button-photo">
+                            <i class="ti-camera"></i>
+                        </button>    
+                        <div class="card-footer">
+                            <div class="footer-title date-container"> 
+                                <span class="card-date">{{ weekDates[0].getDate() }}</span>
+                                <p class="card-month">{{ monthNames[weekDates[0].getMonth()] }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <ng-template #noEntry0>
+                    <div [@fadeInOut]="state" class="entry-card card overlay empty">
+                        <p class="empty-prompt">What Happened Today?</p>
+                        <button class="btn btn-icon btn-github card-button-add">
+                            <i class="ti-plus"></i>
+                        </button>     
+                        <div class="card-footer">
+                            <div class="footer-title date-container"> 
+                                <span class="card-date">{{ weekDates[0].getDate() }}</span>
+                                <p class="card-month">{{ monthNames[weekDates[0].getMonth()] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <div [@fadeInOut]="state" class="entry-card card overlay">
-                    <button class="btn btn-icon btn-github card-button-edit">
-                        <i class="ti-pencil"></i>
-                    </button>
-                    <button class="btn btn-icon btn-github card-button-photo">
-                        <i class="ti-camera"></i>
-                    </button>
-                    <div class="card-footer">
-                        <div class="footer-title date-container"> 
-                            <span class="card-date">{{ weekDates[1].getDate() }}</span>
-                            <p class="card-month">{{ monthNames[weekDates[1].getMonth()] }}</p>
+                <div *ngIf="entryInDatabase[1]; else noEntry1">
+                    <div [@fadeInOut]="state" class="entry-card card overlay">
+                        <button class="btn btn-icon btn-github card-button-edit">
+                            <i class="ti-pencil"></i>
+                        </button>
+                        <button class="btn btn-icon btn-github card-button-photo">
+                            <i class="ti-camera"></i>
+                        </button>    
+                        <div class="card-footer">
+                            <div class="footer-title date-container"> 
+                                <span class="card-date">{{ weekDates[1].getDate() }}</span>
+                                <p class="card-month">{{ monthNames[weekDates[1].getMonth()] }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <ng-template #noEntry1>
+                    <div [@fadeInOut]="state" class="entry-card card overlay empty">
+                        <p class="empty-prompt">What Happened Today?</p>
+                        <button class="btn btn-icon btn-github card-button-add">
+                            <i class="ti-plus"></i>
+                        </button>     
+                        <div class="card-footer">
+                            <div class="footer-title date-container"> 
+                                <span class="card-date">{{ weekDates[1].getDate() }}</span>
+                                <p class="card-month">{{ monthNames[weekDates[1].getMonth()] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <div [@fadeInOut]="state" class="entry-card card overlay empty">
-                    <p class="empty-prompt">What Happened Today?</p>
-                    <button class="btn btn-icon btn-github card-button-add">
-                        <i class="ti-plus"></i>
-                    </button>
-                    <div class="card-footer">
-                        <div class="footer-title date-container"> 
-                            <span class="card-date">{{ weekDates[2].getDate() }}</span>
-                            <p class="card-month">{{ monthNames[weekDates[2].getMonth()] }}</p>
+                <div *ngIf="entryInDatabase[2]; else noEntry2">
+                    <div [@fadeInOut]="state" class="entry-card card overlay">
+                        <button class="btn btn-icon btn-github card-button-edit">
+                            <i class="ti-pencil"></i>
+                        </button>
+                        <button class="btn btn-icon btn-github card-button-photo">
+                            <i class="ti-camera"></i>
+                        </button>    
+                        <div class="card-footer">
+                            <div class="footer-title date-container"> 
+                                <span class="card-date">{{ weekDates[2].getDate() }}</span>
+                                <p class="card-month">{{ monthNames[weekDates[2].getMonth()] }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <ng-template #noEntry2>
+                    <div [@fadeInOut]="state" class="entry-card card overlay empty">
+                        <p class="empty-prompt">What Happened Today?</p>
+                        <button class="btn btn-icon btn-github card-button-add">
+                            <i class="ti-plus"></i>
+                        </button>     
+                        <div class="card-footer">
+                            <div class="footer-title date-container"> 
+                                <span class="card-date">{{ weekDates[2].getDate() }}</span>
+                                <p class="card-month">{{ monthNames[weekDates[2].getMonth()] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-4 col-sm-6">
-                <div [@fadeInOut]="state" class="entry-card card overlay empty">
-                    <p class="empty-prompt">What Happened Today?</p>
-                    <button class="btn btn-icon btn-github card-button-add">
-                        <i class="ti-plus"></i>
-                    </button>
-                    <div class="card-footer">
-                        <div class="footer-title date-container"> 
-                            <span class="card-date">{{ weekDates[3].getDate() }}</span>
-                            <p class="card-month">{{ monthNames[weekDates[3].getMonth()] }}</p>
+                <div *ngIf="entryInDatabase[3]; else noEntry3">
+                    <div [@fadeInOut]="state" class="entry-card card overlay">
+                        <button class="btn btn-icon btn-github card-button-edit">
+                            <i class="ti-pencil"></i>
+                        </button>
+                        <button class="btn btn-icon btn-github card-button-photo">
+                            <i class="ti-camera"></i>
+                        </button>    
+                        <div class="card-footer">
+                            <div class="footer-title date-container"> 
+                                <span class="card-date">{{ weekDates[3].getDate() }}</span>
+                                <p class="card-month">{{ monthNames[weekDates[3].getMonth()] }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <ng-template #noEntry3>
+                    <div [@fadeInOut]="state" class="entry-card card overlay empty">
+                        <p class="empty-prompt">What Happened Today?</p>
+                        <button class="btn btn-icon btn-github card-button-add">
+                            <i class="ti-plus"></i>
+                        </button>     
+                        <div class="card-footer">
+                            <div class="footer-title date-container"> 
+                                <span class="card-date">{{ weekDates[3].getDate() }}</span>
+                                <p class="card-month">{{ monthNames[weekDates[3].getMonth()] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <div [@fadeInOut]="state" class="entry-card card overlay empty">
-                    <p class="empty-prompt">What Happened Today?</p>
-                    <button class="btn btn-icon btn-github card-button-add">
-                        <i class="ti-plus"></i>
-                    </button>
-                    <div class="card-footer">
-                        <div class="footer-title date-container"> 
-                            <span class="card-date">{{ weekDates[4].getDate() }}</span>
-                            <p class="card-month">{{ monthNames[weekDates[4].getMonth()] }}</p>
+                <div *ngIf="entryInDatabase[4]; else noEntry4">
+                    <div [@fadeInOut]="state" class="entry-card card overlay">
+                        <button class="btn btn-icon btn-github card-button-edit">
+                            <i class="ti-pencil"></i>
+                        </button>
+                        <button class="btn btn-icon btn-github card-button-photo">
+                            <i class="ti-camera"></i>
+                        </button>    
+                        <div class="card-footer">
+                            <div class="footer-title date-container"> 
+                                <span class="card-date">{{ weekDates[4].getDate() }}</span>
+                                <p class="card-month">{{ monthNames[weekDates[4].getMonth()] }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <ng-template #noEntry4>
+                    <div [@fadeInOut]="state" class="entry-card card overlay empty">
+                        <p class="empty-prompt">What Happened Today?</p>
+                        <button class="btn btn-icon btn-github card-button-add">
+                            <i class="ti-plus"></i>
+                        </button>     
+                        <div class="card-footer">
+                            <div class="footer-title date-container"> 
+                                <span class="card-date">{{ weekDates[4].getDate() }}</span>
+                                <p class="card-month">{{ monthNames[weekDates[4].getMonth()] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <div [@fadeInOut]="state" class="entry-card card overlay empty">
-                    <p class="empty-prompt">What Happened Today?</p>
-                    <button class="btn btn-icon btn-github card-button-add">
-                        <i class="ti-plus"></i>
-                    </button>
-                    <div class="card-footer">
-                        <div class="footer-title date-container"> 
-                            <span class="card-date">{{ weekDates[5].getDate() }}</span>
-                            <p class="card-month">{{ monthNames[weekDates[5].getMonth()] }}</p>
+                <div *ngIf="entryInDatabase[5]; else noEntry5">
+                    <div [@fadeInOut]="state" class="entry-card card overlay">
+                        <button class="btn btn-icon btn-github card-button-edit">
+                            <i class="ti-pencil"></i>
+                        </button>
+                        <button class="btn btn-icon btn-github card-button-photo">
+                            <i class="ti-camera"></i>
+                        </button>    
+                        <div class="card-footer">
+                            <div class="footer-title date-container"> 
+                                <span class="card-date">{{ weekDates[5].getDate() }}</span>
+                                <p class="card-month">{{ monthNames[weekDates[5].getMonth()] }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <ng-template #noEntry5>
+                    <div [@fadeInOut]="state" class="entry-card card overlay empty">
+                        <p class="empty-prompt">What Happened Today?</p>
+                        <button class="btn btn-icon btn-github card-button-add">
+                            <i class="ti-plus"></i>
+                        </button>     
+                        <div class="card-footer">
+                            <div class="footer-title date-container"> 
+                                <span class="card-date">{{ weekDates[5].getDate() }}</span>
+                                <p class="card-month">{{ monthNames[weekDates[5].getMonth()] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-4 col-sm-6">
-                <div [@fadeInOut]="state" class="entry-card card overlay empty">
-                    <p class="empty-prompt">What Happened Today?</p>
-                    <button class="btn btn-icon btn-github card-button-add">
-                        <i class="ti-plus"></i>
-                    </button>
-                    <div class="card-footer">
-                        <div class="footer-title date-container"> 
-                            <span class="card-date">{{ weekDates[6].getDate() }}</span>
-                            <p class="card-month">{{ monthNames[weekDates[6].getMonth()] }}</p>
+                <div *ngIf="entryInDatabase[6]; else noEntry6">
+                    <div [@fadeInOut]="state" class="entry-card card overlay">
+                        <button class="btn btn-icon btn-github card-button-edit">
+                            <i class="ti-pencil"></i>
+                        </button>
+                        <button class="btn btn-icon btn-github card-button-photo">
+                            <i class="ti-camera"></i>
+                        </button>    
+                        <div class="card-footer">
+                            <div class="footer-title date-container"> 
+                                <span class="card-date">{{ weekDates[6].getDate() }}</span>
+                                <p class="card-month">{{ monthNames[weekDates[6].getMonth()] }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <ng-template #noEntry6>
+                    <div [@fadeInOut]="state" class="entry-card card overlay empty">
+                        <p class="empty-prompt">What Happened Today?</p>
+                        <button class="btn btn-icon btn-github card-button-add">
+                            <i class="ti-plus"></i>
+                        </button>     
+                        <div class="card-footer">
+                            <div class="footer-title date-container"> 
+                                <span class="card-date">{{ weekDates[6].getDate() }}</span>
+                                <p class="card-month">{{ monthNames[weekDates[6].getMonth()] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
             </div>
         </div>
         <div class="row">

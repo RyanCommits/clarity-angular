@@ -46,6 +46,32 @@ declare var $:any;
                 })
             ]))
         ]),
+        // transition doesn't work with ngIf, since DOM does not exist
+        // we use * => void animation to cover this
+        transition(':enter', [
+            animate(500, keyframes([
+                style({
+                    transform: 'translateX(0)',
+                    opacity: 1,
+                    offset: 0
+                }),
+                style({
+                    transform: 'translateX(2%)',
+                    opacity: 0,
+                    offset: 0.4
+                }),
+                style({
+                    transform: 'translateX(1%)',
+                    opacity: 0.5,
+                    offset: 0.7
+                }),
+                style({
+                    transform: 'translateX(0)',
+                    opacity: 1,
+                    offset: 1
+                })
+            ]))
+        ]),
     ])
   ]
 })
@@ -57,6 +83,7 @@ export class OverviewComponent implements OnInit{
     startDate: Date;
     endDate: Date;
     filteredArray: any;
+    entryInDatabase: any[] = [];
 
     state = 'off';
     monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN",
@@ -125,12 +152,13 @@ export class OverviewComponent implements OnInit{
             date.setDate(diff);
         // create an array for 7 dates of the week
         // week determines user navigation through calendar, each click = 7 days later
+        // set hours to not compare time, only the dates
         for (let i = 0; i < 7; i++) {
-            this.weekDates.push(new Date(date.setDate(date.getDate() + 1)));
+            this.weekDates.push(new Date(new Date(date.setDate(date.getDate() + 1)).setHours(0,0,0,0)));
         }
-        // variables for the filter function. sethours to not compare time, only the dates
-        this.startDate = new Date(new Date(date.setDate(date.getDate() - 6)).setHours(0,0,0,0));
-        this.endDate = new Date(new Date(date.setDate(date.getDate() + 6)).setHours(0,0,0,0));
+        // variables for the filter function.
+        this.startDate = this.weekDates[0];
+        this.endDate = this.weekDates[6];
     }
 
     // filter entries array based on date range. Date ranger provided by getMonday function
@@ -141,6 +169,28 @@ export class OverviewComponent implements OnInit{
             return datify >= startDate && datify <= endDate
         })
         console.log('filter works', this.filteredArray);
+        // excute function that compares dates and whether entries exist
+        this.doesEntryExist(this.weekDates, this.filteredArray);
+    }
+    // display an empty card or filled card depending on whether entry exists
+    doesEntryExist(weekDatesArray, filteredArray) {
+        // loop over both current week and database week to see if entry exists
+        // if it does exist, push cardExists, a boolean, into an Array.
+        // Final array will have 7 booleans, which the HTML will use as *ngIf's
+        // getTime is required to boolean compare Date objects
+        this.entryInDatabase = [];
+
+        weekDatesArray.forEach((oneDay) => {
+            let cardExists = false
+            filteredArray.forEach((oneEntry) => {
+                if (oneDay.getTime() === new Date(oneEntry.date).getTime() ) {
+                    cardExists = true
+                    return;
+                }
+            })
+            this.entryInDatabase.push(cardExists);
+        })
+        console.log(this.entryInDatabase);
     }
 
 
