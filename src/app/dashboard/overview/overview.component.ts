@@ -123,7 +123,6 @@ export class OverviewComponent implements OnInit{
         .subscribe(
             (entriesFromApi: any[]) => {
                 this.entries = entriesFromApi;
-                console.log(this.entries);
             },
             err => console.error(err),
             // when this.entries is populated, execute callback function that filters
@@ -159,6 +158,7 @@ export class OverviewComponent implements OnInit{
         // variables for the filter function.
         this.startDate = this.weekDates[0];
         this.endDate = this.weekDates[6];
+        console.log('weekDates Array', this.weekDates)
     }
 
     // filter entries array based on date range. Date ranger provided by getMonday function
@@ -190,7 +190,6 @@ export class OverviewComponent implements OnInit{
             })
             this.entryInDatabase.push(cardExists);
         })
-        console.log(this.entryInDatabase);
     }
 
 

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { OverviewComponent } from './overview/overview.component';
-import { StatsComponent } from './stats/stats.component';
+import { NewEntryComponent } from './new-entry/new-entry.component';
 import { DashboardRoutes } from './dashboard.routing';
 
 @NgModule({
@@ -13,7 +13,7 @@ import { DashboardRoutes } from './dashboard.routing';
         RouterModule.forChild(DashboardRoutes),
         FormsModule
     ],
-    declarations: [OverviewComponent, StatsComponent]
+    declarations: [OverviewComponent, NewEntryComponent]
 })
 
 export class DashboardModule {}

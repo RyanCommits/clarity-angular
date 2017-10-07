@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { OverviewComponent } from './overview/overview.component';
-import { StatsComponent } from './stats/stats.component';
+import { NewEntryComponent } from './new-entry/new-entry.component';
 
 export const DashboardRoutes: Routes = [{
     path: '',
@@ -9,7 +9,7 @@ export const DashboardRoutes: Routes = [{
         path: '',
         component: OverviewComponent
     }, {
-        path: 'stats',
-        component: StatsComponent
+        path: 'new/:year/:month/:date',
+        component: NewEntryComponent
     }]
 }];
