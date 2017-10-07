@@ -54,6 +54,10 @@ export class OverviewComponent implements OnInit{
 
     weekClickCount = 0;
     weekDates: any[] = [];
+    startDate: Date;
+    endDate: Date;
+    filteredArray: any;
+
     state = 'off';
     monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN",
         "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
@@ -84,20 +88,27 @@ export class OverviewComponent implements OnInit{
         // find date of previous Monday
         this.getMonday(new Date(), this.weekClickCount);
 
+        //////////////////////////////
         // get all entries of user
+        //////////////////////////////
+
         this.entryThang.getEntries()
         .subscribe(
             (entriesFromApi: any[]) => {
                 this.entries = entriesFromApi;
                 console.log(this.entries);
-            }
+            },
+            err => console.error(err),
+            // when this.entries is populated, execute callback function that filters
+            // dates based on range. Parameters provide start and end date
+            () => this.filterEntries(this.entries, this.startDate, this.endDate)
         );
+
         this.authThang.getLoginStatus()
             .subscribe(
             (loggedInInfo: any) => {
                 if (loggedInInfo.isLoggedIn) {
                 this.userInfo = loggedInInfo.userInfo;
-                console.log(this.userInfo)
                 }
             }
         );
@@ -116,7 +127,21 @@ export class OverviewComponent implements OnInit{
         for (let i = 0; i < 7; i++) {
             this.weekDates.push(new Date(date.setDate(diff + i + (7 * week))));
         }
+        // variables for the filter function
+        this.startDate = new Date(date.setDate(diff + (7 * week)));
+        this.endDate = new Date(date.setDate(diff + 6 + (7 * week)));
     }
+
+    // filter entries array based on date range. Date ranger provided by getMonday function
+    filterEntries(entriesArray, startDate, endDate) {
+        this.filteredArray = entriesArray.filter(function (oneEntry) {
+            // turn oneEntry.date into a Date object, in order to boolean compare
+            const datify = new Date(oneEntry.date)
+            return datify >= startDate && datify <= endDate
+        })
+        console.log('filter works', this.filteredArray);
+    }
+
 
     // when User clicks next week or previous week
     nextWeek() {
@@ -132,6 +157,7 @@ export class OverviewComponent implements OnInit{
     // delayNextWeek() {
     //     setTimeout(this.nextWeek(), 3000);
     // }
+
     // controls states of animation
     onAnimate() {
         this.state === 'off' ? this.state = 'on' : this.state = 'off';
