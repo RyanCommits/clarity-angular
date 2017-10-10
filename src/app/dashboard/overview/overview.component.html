@@ -1,9 +1,29 @@
 <div class="main-content">
     <div class="container-fluid">
-        <div class="row">
-            <button (click)="prevWeek(); onAnimate()">Prev</button>
-            <button (click)="nextWeek(); onAnimate()">Next</button>
+        <div class="row text-center row-nav-year">
+            <span class="nav-year">{{ weekDates[0].getFullYear() }}</span>
         </div>
+        <!-- Navigation buttons row -->
+        <div class="row nav-row text-center">
+            
+            <i (click)="prevMonth(); onAnimate()" class="fa fa-angle-double-left nav-button" aria-hidden="true"></i>
+            <i (click)="prevWeek(); onAnimate()" class="fa fa-angle-left nav-button" aria-hidden="true"></i>
+           
+            <span class="date-nav">
+                <span class="date-nav-item">{{ monthNames[weekDates[0].getMonth()] }}</span>
+                <span class="date-nav-item">{{ weekDates[0].getDate() }}</span>
+            </span>
+            <span>-</span>
+            <span class="date-nav">
+                <span class="date-nav-item">{{ monthNames[weekDates[6].getMonth()] }}</span>
+                <span class="date-nav-item">{{ weekDates[6].getDate() }}</span>
+            </span>
+            <i (click)="nextWeek(); onAnimate()" class="fa fa-angle-right nav-button" aria-hidden="true"></i>
+            <i (click)="nextMonth(); onAnimate()" class="fa fa-angle-double-right nav-button" aria-hidden="true"></i>
+        </div>
+        
+        <!-- Begin entry cards -->
+
         <div class="row">
             <div class="col-lg-4 col-sm-6">
                 <div *ngIf="entryInDatabase[0]; else noEntry0">

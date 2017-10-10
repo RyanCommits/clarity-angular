@@ -209,6 +209,18 @@ export class OverviewComponent implements OnInit{
         this.getMonday(new Date(), this.weekClickCount)
         this.filterEntries(this.entries, this.startDate, this.endDate)
     }
+    // when User clicks next month or previous month
+    nextMonth() {
+        this.weekClickCount = this.weekClickCount + 4;
+        this.getMonday(new Date(), this.weekClickCount);
+        this.filterEntries(this.entries, this.startDate, this.endDate)
+    }
+
+    prevMonth() {
+        this.weekClickCount = this.weekClickCount - 4;
+        this.getMonday(new Date(), this.weekClickCount)
+        this.filterEntries(this.entries, this.startDate, this.endDate)
+    }
 
     // delayNextWeek() {
     //     setTimeout(this.nextWeek(), 3000);

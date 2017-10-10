@@ -1,7 +1,6 @@
 import { Component, OnInit, Renderer, ViewChild, ElementRef, Directive } from '@angular/core';
 import { ROUTES } from '../.././sidebar/sidebar.component';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 import { AuthApiService } from '../../services/auth-api.service';
 
@@ -19,8 +18,7 @@ declare var $: any;
 })
 
 export class NavbarComponent implements OnInit{
-    private listTitles: any[];
-    location: Location;
+
     private nativeElement: Node;
     private toggleButton;
     private sidebarVisible: boolean;
@@ -28,18 +26,15 @@ export class NavbarComponent implements OnInit{
     @ViewChild("navbar-cmp") button;
 
     constructor(
-        location: Location,
         private renderer: Renderer,
         private element: ElementRef,
         private authThang: AuthApiService,
         private routerThang: Router) {
-        this.location = location;
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
     }
 
     ngOnInit(){
-        this.listTitles = ROUTES.filter(listTitle => listTitle);
 
         var navbar : HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
@@ -105,31 +100,6 @@ export class NavbarComponent implements OnInit{
         }
     }
 
-    getTitle(){
-        var titlee = this.location.prepareExternalUrl(this.location.path());
-        if(titlee.charAt(0) === '#'){
-            titlee = titlee.slice( 2 );
-        }
-        for(var item = 0; item < this.listTitles.length; item++){
-            var parent = this.listTitles[item];
-            if(parent.path === titlee){
-                return parent.title;
-            }else if(parent.children){
-                var children_from_url = titlee.split("/")[2];
-                for(var current = 0; current < parent.children.length; current++){
-                    if(parent.children[current].path === children_from_url ){
-                        return parent.children[current].title;
-                    }
-                }
-            }
-        }
-        return 'Dashboard';
-    }
-
-    getPath(){
-        // console.log(this.location);
-        return this.location.prepareExternalUrl(this.location.path());
-    }
     logMeOut() {
         this.authThang.logOut()
             .subscribe(
@@ -137,5 +107,16 @@ export class NavbarComponent implements OnInit{
                     this.routerThang.navigate(['/login']);
                 }
             );
+    }
+
+    getToday() {
+        const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+        const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        const today = new Date();
+
+        const day = days[ today.getDay() ];
+        const month = months[ today.getMonth() ];
+
+        return day + ', ' + month + ' ' + today.getDate();
     }
 }

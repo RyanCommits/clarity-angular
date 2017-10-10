@@ -1,3 +1,38 @@
+/* Container Styles */
+
+.main-content {
+    padding: 0px 15px;
+}
+.date-nav-item {
+    font-size: 20px;
+}
+.row-nav-year{
+    margin-top: 10px;
+}
+.nav-row {
+    margin-bottom: 20px;
+}
+.date-nav {
+    margin: 0 10px;
+}
+.nav-button {
+    background-color: transparent;
+    border: 2px solid #66615B;
+    border-radius: 20px;
+    color: #66615B;
+    height: 36px;
+    font-weight: 600;
+    margin: 0 2px;
+    min-width: 36px;
+    padding: 6px;
+    line-height: 22px;
+    text-align: center;
+}
+.nav-button:hover{
+    background-color: #66615B;
+    border-color: #66615B;
+    color: #FFFFFF;
+}
 /* Filled Card Styles */
 
 .entry-card {

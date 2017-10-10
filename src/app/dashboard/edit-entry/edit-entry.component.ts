@@ -66,7 +66,7 @@ export class EditEntryComponent implements OnInit {
           this.entryThang.updateEntry(serviceParams, this.newEntry)
             .subscribe(
               (fullEntryDetails) => {
-                console.log('Update entry success', fullEntryDetails);
+                // console.log('Update entry success', fullEntryDetails);
 
                 this.errorMessage = '';
                 this.routerThang.navigate(['dashboard']);
