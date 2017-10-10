@@ -19,4 +19,12 @@ export class EntryApiService {
       { withCredentials: true }
     );
   }
+
+  postEntry(entryDate: string, entryFields: EntryInfo) {
+    return this.httpThang.post(
+      this.baseUrl + '/api/dashboard/' + entryDate,
+      entryFields,
+      { withCredentials: true }
+    );
+  }
 }

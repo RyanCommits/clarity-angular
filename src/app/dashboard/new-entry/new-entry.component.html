@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="card card-wizard" id="wizardCard">
-                    <form id="wizardForm" method="" action="">
+                    <form id="wizardForm" (ngSubmit)="saveEntryNoImage()">
                         <div class="card-header text-center">
                             <h4 class="card-title">Morning Entry</h4>
                             <p class="category">Split a complicated flow in multiple steps</p>
@@ -14,7 +14,8 @@
                                 <div class="form-group">
                                     <label class="col-sm-1">1</label>
                                     <div class="col-sm-11">
-                                        <textarea autosize class="form-control" placeholder="My good health and energy " rows="1"></textarea>
+                                        <!-- autosize attribute for automatic expansion of textarea -->
+                                        <textarea name="entryGrateful" [(ngModel)]="newEntry.entryGrateful[0]" autosize class="form-control" placeholder="My good health and energy " rows="1"></textarea>
                                     </div>
                                 </div>
                             </fieldset>
@@ -22,7 +23,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-1">2</label>
                                     <div class="col-sm-11">
-                                        <textarea autosize class="form-control" placeholder="My supportive friendships" rows="1"></textarea>
+                                        <textarea name="entryGrateful" [(ngModel)]="newEntry.entryGrateful[1]" autosize class="form-control" placeholder="My supportive friendships" rows="1"></textarea>
                                     </div>
                                 </div>
                             </fieldset>
@@ -30,7 +31,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-1">3</label>
                                     <div class="col-sm-11">
-                                        <textarea autosize class="form-control" placeholder="Loving what I do every day" rows="1"></textarea>
+                                        <textarea name="entryGrateful" [(ngModel)]="newEntry.entryGrateful[2]" autosize class="form-control" placeholder="Loving what I do every day" rows="1"></textarea>
                                     </div>
                                 </div>
                             </fieldset>
@@ -40,7 +41,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-1">1</label>
                                     <div class="col-sm-11">
-                                        <textarea autosize class="form-control" placeholder="Meet someone new" rows="1"></textarea>
+                                        <textarea name="entryWillAccomplish" [(ngModel)]="newEntry.entryWillAccomplish[0]" autosize class="form-control" placeholder="Meet someone new" rows="1"></textarea>
                                     </div>
                                 </div>
                             </fieldset>
@@ -48,7 +49,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-1">2</label>
                                     <div class="col-sm-11">
-                                        <textarea autosize class="form-control" placeholder="Catch up with an old friend" rows="1"></textarea>
+                                        <textarea name="entryWillAccomplish" [(ngModel)]="newEntry.entryWillAccomplish[1]" autosize class="form-control" placeholder="Catch up with an old friend" rows="1"></textarea>
                                     </div>
                                 </div>
                             </fieldset>
@@ -56,7 +57,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-1">3</label>
                                     <div class="col-sm-11">
-                                        <textarea autosize class="form-control" placeholder="Do something scary" rows="1"></textarea>
+                                        <textarea name="entryWillAccomplish" [(ngModel)]="newEntry.entryWillAccomplish[2]" autosize class="form-control" placeholder="Do something scary" rows="1"></textarea>
                                     </div>
                                 </div>
                             </fieldset>
@@ -66,7 +67,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-1"></label>
                                     <div class="col-sm-11">
-                                        <textarea autosize class="form-control" placeholder="I may not be the best, but I'm not afraid of hard work. No one will outwork me." rows="1"></textarea>
+                                        <textarea name="entryAffirmation" [(ngModel)]="newEntry.entryAffirmation" autosize class="form-control" placeholder="I may not be the best, but I'm not afraid of hard work. No one will outwork me." rows="1"></textarea>
                                     </div>
                                 </div>
                             </fieldset>
@@ -76,7 +77,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-1"></label>
                                     <div class="col-sm-11">
-                                        <textarea autosize class="form-control" placeholder="Your thoughts this morning..." rows="4"></textarea>
+                                        <textarea name="entryDump" [(ngModel)]="newEntry.entryDump" autosize class="form-control" placeholder="Your thoughts this morning..." rows="4"></textarea>
                                     </div>
                                 </div>
                             </fieldset>
@@ -94,61 +95,61 @@
                                     <h5> Rate My Day </h5>
                                     <div class="col-sm-12">
                                         <div class="radio checkbox-inline">
-                                            <input type="radio" name="radio10" id="radio20" value="1">
+                                            <input name="entryRating" [(ngModel)]="newEntry.entryRating" type="radio" name="radio10" id="radio20" value="1">
                                             <label for="radio20">
                                                 1
                                             </label>
                                         </div>
                                         <div class="radio checkbox-inline">
-                                            <input type="radio" name="radio10" id="radio21" value="2">
+                                            <input name="entryRating" [(ngModel)]="newEntry.entryRating" type="radio" name="radio10" id="radio21" value="2">
                                             <label for="radio21">
                                                 2
                                             </label>
                                         </div>
                                         <div class="radio checkbox-inline">
-                                            <input type="radio" name="radio10" id="radio22" value="3">
+                                            <input name="entryRating" [(ngModel)]="newEntry.entryRating" type="radio" name="radio10" id="radio22" value="3">
                                             <label for="radio22">
                                                 3
                                             </label>
                                         </div>
                                         <div class="radio checkbox-inline">
-                                            <input type="radio" name="radio10" id="radio23" value="4">
+                                            <input name="entryRating" [(ngModel)]="newEntry.entryRating" type="radio" name="radio10" id="radio23" value="4">
                                             <label for="radio23">
                                                 4
                                             </label>
                                         </div>
                                         <div class="radio checkbox-inline">
-                                            <input type="radio" name="radio10" id="radio24" value="5">
+                                            <input name="entryRating" [(ngModel)]="newEntry.entryRating" type="radio" name="radio10" id="radio24" value="5">
                                             <label for="radio24">
                                                 5
                                             </label>
                                         </div>
                                         <div class="radio checkbox-inline">
-                                            <input type="radio" name="radio10" id="radio25" value="6">
+                                            <input name="entryRating" [(ngModel)]="newEntry.entryRating" type="radio" name="radio10" id="radio25" value="6">
                                             <label for="radio25">
                                                 6
                                             </label>
                                         </div>
                                         <div class="radio checkbox-inline">
-                                            <input type="radio" name="radio10" id="radio26" value="7">
+                                            <input name="entryRating" [(ngModel)]="newEntry.entryRating" type="radio" name="radio10" id="radio26" value="7">
                                             <label for="radio26">
                                                 7
                                             </label>
                                         </div>
                                         <div class="radio checkbox-inline">
-                                            <input type="radio" name="radio10" id="radio27" value="8">
+                                            <input name="entryRating" [(ngModel)]="newEntry.entryRating" type="radio" name="radio10" id="radio27" value="8">
                                             <label for="radio27">
                                                 8
                                             </label>
                                         </div>
                                         <div class="radio checkbox-inline">
-                                            <input type="radio" name="radio10" id="radio28" value="9">
+                                            <input name="entryRating" [(ngModel)]="newEntry.entryRating" type="radio" name="radio10" id="radio28" value="9">
                                             <label for="radio28">
                                                 9
                                             </label>
                                         </div>
                                         <div class="radio checkbox-inline">
-                                            <input type="radio" name="radio10" id="radio29" value="10">
+                                            <input name="entryRating" [(ngModel)]="newEntry.entryRating" type="radio" name="radio10" id="radio29" value="10">
                                             <label for="radio29">
                                                 10
                                             </label>
@@ -162,7 +163,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-1">1</label>
                                     <div class="col-sm-11">
-                                        <textarea autosize class="form-control" placeholder="Meet someone new" rows="1"></textarea>
+                                        <textarea name="entryAchievements" [(ngModel)]="newEntry.entryAchievements" autosize class="form-control" placeholder="Meet someone new" rows="1"></textarea>
                                     </div>
                                 </div>
                             </fieldset>
@@ -170,7 +171,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-1">2</label>
                                     <div class="col-sm-11">
-                                        <textarea autosize class="form-control" placeholder="Catch up with an old friend" rows="1"></textarea>
+                                        <textarea name="entryAchievements" [(ngModel)]="newEntry.entryAchievements" autosize class="form-control" placeholder="Catch up with an old friend" rows="1"></textarea>
                                     </div>
                                 </div>
                             </fieldset>
@@ -178,7 +179,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-1">3</label>
                                     <div class="col-sm-11">
-                                        <textarea autosize class="form-control" placeholder="Do something scary" rows="1"></textarea>
+                                        <textarea name="entryAchievements" [(ngModel)]="newEntry.entryAchievements" autosize class="form-control" placeholder="Do something scary" rows="1"></textarea>
                                     </div>
                                 </div>
                             </fieldset>
@@ -188,7 +189,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-1"></label>
                                     <div class="col-sm-11">
-                                        <textarea autosize class="form-control" placeholder="Meet someone new" rows="1"></textarea>
+                                        <textarea name="entryLearn" [(ngModel)]="newEntry.entryLearn" autosize class="form-control" placeholder="Meet someone new" rows="1"></textarea>
                                     </div>
                                 </div>
                             </fieldset>
@@ -198,7 +199,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-1"></label>
                                     <div class="col-sm-11">
-                                        <textarea autosize class="form-control" placeholder="Meet someone new" rows="1"></textarea>
+                                        <textarea name="entryImprove" [(ngModel)]="newEntry.entryImprove" autosize class="form-control" placeholder="Meet someone new" rows="1"></textarea>
                                     </div>
                                 </div>
                             </fieldset>
@@ -207,7 +208,7 @@
                             
                             <div class="card-footer">
                                 <button type="button" class="btn btn-default btn-fill btn-wd btn-back">Discard</button>
-                                <button type="button" class="btn btn-info btn-fill btn-wd btn-next">Save and Submit</button>
+                                <button type="submit" class="btn btn-info btn-fill btn-wd btn-next">Save and Submit</button>
                                 <div class="clearfix"></div>
                             </div>
                         </div>

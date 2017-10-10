@@ -1,5 +1,12 @@
 export interface EntryInfo {
-    entryDate: string;
-    entryImage: string;
-    entryFreeText: string;
+    entryDate: String;
+    // entryImage: string;
+    entryGrateful: any[];
+    entryWillAccomplish: any[];
+    entryAffirmation: String;
+    entryDump: String;
+    entryRating: Number;
+    entryAchievements: any[];
+    entryLearn: String;
+    entryImprove: String;
 }
