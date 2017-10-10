@@ -22,7 +22,7 @@ export class EntryApiService {
 
   postEntry(entryDate: string, entryFields: EntryInfo) {
     return this.httpThang.post(
-      this.baseUrl + '/api/dashboard/' + entryDate,
+      this.baseUrl + '/api/dashboard/new/' + entryDate,
       entryFields,
       { withCredentials: true }
     );

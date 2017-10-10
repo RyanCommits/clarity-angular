@@ -78,6 +78,8 @@ declare var $:any;
 
 export class OverviewComponent implements OnInit{
 
+    dummyDate = new Date();
+
     weekClickCount = 0;
     weekDates: any[] = [];
     startDate: Date;
@@ -158,14 +160,14 @@ export class OverviewComponent implements OnInit{
         // variables for the filter function.
         this.startDate = this.weekDates[0];
         this.endDate = this.weekDates[6];
-        console.log('weekDates Array', this.weekDates)
     }
 
     // filter entries array based on date range. Date ranger provided by getMonday function
     filterEntries(entriesArray, startDate, endDate) {
+        const standardizeTimeZone = this.dummyDate.toLocaleTimeString('en-us', {timeZoneName:'short'}).split(' ')[2]
         this.filteredArray = entriesArray.filter(function (oneEntry) {
             // turn oneEntry.date into a Date object, in order to boolean compare
-            const datify = new Date(oneEntry.date)
+            const datify = new Date(oneEntry.date + standardizeTimeZone)
             return datify >= startDate && datify <= endDate
         })
         console.log('filter works', this.filteredArray);
@@ -182,8 +184,10 @@ export class OverviewComponent implements OnInit{
 
         weekDatesArray.forEach((oneDay) => {
             let cardExists = false
+            const standardizeTimeZone = this.dummyDate.toLocaleTimeString('en-us', {timeZoneName:'short'}).split(' ')[2]
             filteredArray.forEach((oneEntry) => {
-                if (oneDay.getTime() === new Date(oneEntry.date).getTime() ) {
+                // compare the time values of each date. Set hours to 0 to standarize times
+                if (oneDay.getTime() === new Date(oneEntry.date + standardizeTimeZone ).setHours(0,0,0,0)) {
                     cardExists = true
                     return;
                 }
@@ -213,5 +217,22 @@ export class OverviewComponent implements OnInit{
     // controls states of animation
     onAnimate() {
         this.state === 'off' ? this.state = 'on' : this.state = 'off';
+    }
+
+    // the URL needs the date and month to be in DD and MM format
+    // if less than 10, use 09, 05, etc.
+    // this is required so that arrays can sort the days and months correctly
+    ddDatify(dateFromArray) {
+        if (dateFromArray < 10) {
+            return '0' + dateFromArray;
+        }
+        return dateFromArray;
+    }
+
+    mmMonthify(monthFromArray) {
+        if (monthFromArray < 10) {
+            return '0' + monthFromArray;
+        }
+        return monthFromArray;
     }
 }

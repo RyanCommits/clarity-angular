@@ -46,14 +46,13 @@ export class NewEntryComponent implements OnInit {
             const objectParams = myParams.year + '-' + myParams.month + '-' + myParams.date;
             this.newEntry.entryDate = objectParams;
 
-            console.log(this.newEntry);
             this.entryThang.postEntry(serviceParams, this.newEntry)
               .subscribe(
                 (fullEntryDetails) => {
-                  console.log('New entry success', fullEntryDetails);
+                  // console.log('New entry success', fullEntryDetails);
 
                   this.errorMessage = '';
-
+                  this.routerThang.navigate(['dashboard']);
                 },
 
                 (errorInfo) => {
@@ -64,6 +63,7 @@ export class NewEntryComponent implements OnInit {
                   } else {
                     this.errorMessage = 'Unknown error. Try again later.';
                   }
+                  this.routerThang.navigate(['dashboard']);
                 }
             );
           }
