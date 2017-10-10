@@ -20,6 +20,21 @@ export class EntryApiService {
     );
   }
 
+  getEntry(entryDate: string) {
+    return this.httpThang.get(
+      this.baseUrl + '/api/dashboard/edit/' + entryDate,
+      { withCredentials: true }
+    )
+  }
+
+  updateEntry(entryDate: string, entryFields: EntryInfo) {
+    return this.httpThang.put(
+      this.baseUrl + '/api/dashboard/edit/' + entryDate,
+      entryFields,
+      { withCredentials: true }
+    );
+  }
+
   postEntry(entryDate: string, entryFields: EntryInfo) {
     return this.httpThang.post(
       this.baseUrl + '/api/dashboard/new/' + entryDate,

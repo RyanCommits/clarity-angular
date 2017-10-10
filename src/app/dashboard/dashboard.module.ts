@@ -7,6 +7,7 @@ import { Autosize } from 'ng-autosize';
 import { OverviewComponent } from './overview/overview.component';
 import { NewEntryComponent } from './new-entry/new-entry.component';
 import { DashboardRoutes } from './dashboard.routing';
+import { EditEntryComponent } from './edit-entry/edit-entry.component';
 
 @NgModule({
     imports: [
@@ -14,7 +15,7 @@ import { DashboardRoutes } from './dashboard.routing';
         RouterModule.forChild(DashboardRoutes),
         FormsModule
     ],
-    declarations: [OverviewComponent, NewEntryComponent, Autosize]
+    declarations: [OverviewComponent, NewEntryComponent, Autosize, EditEntryComponent]
 })
 
 export class DashboardModule {}

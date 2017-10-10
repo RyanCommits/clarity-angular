@@ -8,7 +8,13 @@
             <div class="col-lg-4 col-sm-6">
                 <div *ngIf="entryInDatabase[0]; else noEntry0">
                     <div [@fadeInOut]="state" class="entry-card card overlay">
-                        <button class="btn btn-icon btn-github card-button-edit">
+                        <button [routerLink]="['/dashboard', 
+                        'edit', 
+                        weekDates[0].getFullYear(), 
+                        mmMonthify(weekDates[0].getMonth() + 1), 
+                        ddDatify(weekDates[0].getDate())]"
+                        class="btn btn-icon btn-github card-button-add"
+                        class="btn btn-icon btn-github card-button-edit">
                             <i class="ti-pencil"></i>
                         </button>
                         <button class="btn btn-icon btn-github card-button-photo">
@@ -45,7 +51,13 @@
             <div class="col-lg-4 col-sm-6">
                 <div *ngIf="entryInDatabase[1]; else noEntry1">
                     <div [@fadeInOut]="state" class="entry-card card overlay">
-                        <button class="btn btn-icon btn-github card-button-edit">
+                        <button [routerLink]="['/dashboard', 
+                        'edit', 
+                        weekDates[1].getFullYear(), 
+                        mmMonthify(weekDates[1].getMonth() + 1), 
+                        ddDatify(weekDates[1].getDate())]"
+                        class="btn btn-icon btn-github card-button-add"
+                        class="btn btn-icon btn-github card-button-edit">
                             <i class="ti-pencil"></i>
                         </button>
                         <button class="btn btn-icon btn-github card-button-photo">
@@ -82,7 +94,13 @@
             <div class="col-lg-4 col-sm-6">
                 <div *ngIf="entryInDatabase[2]; else noEntry2">
                     <div [@fadeInOut]="state" class="entry-card card overlay">
-                        <button class="btn btn-icon btn-github card-button-edit">
+                        <button [routerLink]="['/dashboard', 
+                        'edit', 
+                        weekDates[2].getFullYear(), 
+                        mmMonthify(weekDates[2].getMonth() + 1), 
+                        ddDatify(weekDates[2].getDate())]"
+                        class="btn btn-icon btn-github card-button-add"
+                        class="btn btn-icon btn-github card-button-edit">
                             <i class="ti-pencil"></i>
                         </button>
                         <button class="btn btn-icon btn-github card-button-photo">
@@ -121,7 +139,13 @@
             <div class="col-lg-4 col-sm-6">
                 <div *ngIf="entryInDatabase[3]; else noEntry3">
                     <div [@fadeInOut]="state" class="entry-card card overlay">
-                        <button class="btn btn-icon btn-github card-button-edit">
+                        <button [routerLink]="['/dashboard', 
+                        'edit', 
+                        weekDates[3].getFullYear(), 
+                        mmMonthify(weekDates[3].getMonth() + 1), 
+                        ddDatify(weekDates[3].getDate())]"
+                        class="btn btn-icon btn-github card-button-add"
+                        class="btn btn-icon btn-github card-button-edit">
                             <i class="ti-pencil"></i>
                         </button>
                         <button class="btn btn-icon btn-github card-button-photo">
@@ -158,7 +182,13 @@
             <div class="col-lg-4 col-sm-6">
                 <div *ngIf="entryInDatabase[4]; else noEntry4">
                     <div [@fadeInOut]="state" class="entry-card card overlay">
-                        <button class="btn btn-icon btn-github card-button-edit">
+                        <button [routerLink]="['/dashboard', 
+                        'edit', 
+                        weekDates[4].getFullYear(), 
+                        mmMonthify(weekDates[4].getMonth() + 1), 
+                        ddDatify(weekDates[4].getDate())]"
+                        class="btn btn-icon btn-github card-button-add"
+                        class="btn btn-icon btn-github card-button-edit">
                             <i class="ti-pencil"></i>
                         </button>
                         <button class="btn btn-icon btn-github card-button-photo">
@@ -195,7 +225,13 @@
             <div class="col-lg-4 col-sm-6">
                 <div *ngIf="entryInDatabase[5]; else noEntry5">
                     <div [@fadeInOut]="state" class="entry-card card overlay">
-                        <button class="btn btn-icon btn-github card-button-edit">
+                        <button [routerLink]="['/dashboard', 
+                        'edit', 
+                        weekDates[5].getFullYear(), 
+                        mmMonthify(weekDates[5].getMonth() + 1), 
+                        ddDatify(weekDates[5].getDate())]"
+                        class="btn btn-icon btn-github card-button-add"
+                        class="btn btn-icon btn-github card-button-edit">
                             <i class="ti-pencil"></i>
                         </button>
                         <button class="btn btn-icon btn-github card-button-photo">
@@ -234,7 +270,13 @@
             <div class="col-lg-4 col-sm-6">
                 <div *ngIf="entryInDatabase[6]; else noEntry6">
                     <div [@fadeInOut]="state" class="entry-card card overlay">
-                        <button class="btn btn-icon btn-github card-button-edit">
+                        <button [routerLink]="['/dashboard', 
+                        'edit', 
+                        weekDates[6].getFullYear(), 
+                        mmMonthify(weekDates[6].getMonth() + 1), 
+                        ddDatify(weekDates[6].getDate())]"
+                        class="btn btn-icon btn-github card-button-add"
+                        class="btn btn-icon btn-github card-button-edit">
                             <i class="ti-pencil"></i>
                         </button>
                         <button class="btn btn-icon btn-github card-button-photo">
