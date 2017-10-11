@@ -27,7 +27,10 @@
         <div class="row">
             <div class="col-lg-4 col-sm-6">
                 <div *ngIf="entryInDatabase[0]; else noEntry0">
-                    <div [@fadeInOut]="state" class="entry-card card overlay">
+                    <!-- Fade animation -->
+                    <div [@fadeInOut]="state" class="entry-card0 card overlay" 
+                        [ngStyle]="{ 'background-image': 'url(' + imageDomain + filteredArray[0].image + ')' }">
+                        <!-- button routes to specific URL of each entry -->
                         <button [routerLink]="['/dashboard', 
                         'edit', 
                         weekDates[0].getFullYear(), 
@@ -37,7 +40,11 @@
                         class="btn btn-icon btn-github card-button-edit">
                             <i class="ti-pencil"></i>
                         </button>
-                        <button class="btn btn-icon btn-github card-button-photo">
+                        <!-- image upload input. It's hidden, the button myFile.click activates it -->
+                        <input type="file" #myFile
+                            ng2FileSelect [uploader]="myUploader"
+                            (change)="savePhoneWithImage(filteredArray[0])">
+                        <button (click)="myFile.click()" class="btn btn-icon btn-github card-button-photo">
                             <i class="ti-camera"></i>
                         </button>    
                         <div class="card-footer">
@@ -48,8 +55,9 @@
                         </div>
                     </div>
                 </div>
+                <!-- If there isn't an entry, display these styles instead -->
                 <ng-template #noEntry0>
-                    <div [@fadeInOut]="state" class="entry-card card overlay empty">
+                    <div [@fadeInOut]="state" class="entry-card0 card overlay empty">
                         <p class="empty-prompt">What Happened Today?</p>
                         <button [routerLink]="['/dashboard', 
                             'new', 
@@ -70,7 +78,8 @@
             </div>
             <div class="col-lg-4 col-sm-6">
                 <div *ngIf="entryInDatabase[1]; else noEntry1">
-                    <div [@fadeInOut]="state" class="entry-card card overlay">
+                    <div [@fadeInOut]="state" class="entry-card1 card overlay"
+                         [ngStyle]="{ 'background-image': 'url(' + imageDomain + filteredArray[1].image + ')' }">
                         <button [routerLink]="['/dashboard', 
                         'edit', 
                         weekDates[1].getFullYear(), 
@@ -80,7 +89,10 @@
                         class="btn btn-icon btn-github card-button-edit">
                             <i class="ti-pencil"></i>
                         </button>
-                        <button class="btn btn-icon btn-github card-button-photo">
+                        <input type="file" #myFile
+                            ng2FileSelect [uploader]="myUploader"
+                            (change)="savePhoneWithImage(filteredArray[1])">
+                        <button (click)="myFile.click()" class="btn btn-icon btn-github card-button-photo">
                             <i class="ti-camera"></i>
                         </button>    
                         <div class="card-footer">
@@ -92,7 +104,7 @@
                     </div>
                 </div>
                 <ng-template #noEntry1>
-                    <div [@fadeInOut]="state" class="entry-card card overlay empty">
+                    <div [@fadeInOut]="state" class="entry-card1 card overlay empty">
                         <p class="empty-prompt">What Happened Today?</p>
                         <button [routerLink]="['/dashboard', 
                             'new', 
@@ -113,7 +125,8 @@
             </div>
             <div class="col-lg-4 col-sm-6">
                 <div *ngIf="entryInDatabase[2]; else noEntry2">
-                    <div [@fadeInOut]="state" class="entry-card card overlay">
+                    <div [@fadeInOut]="state" class="entry-card card overlay"
+                         [ngStyle]="{ 'background-image': 'url(' + imageDomain + filteredArray[2].image + ')' }">
                         <button [routerLink]="['/dashboard', 
                         'edit', 
                         weekDates[2].getFullYear(), 
@@ -123,7 +136,10 @@
                         class="btn btn-icon btn-github card-button-edit">
                             <i class="ti-pencil"></i>
                         </button>
-                        <button class="btn btn-icon btn-github card-button-photo">
+                        <input type="file" #myFile
+                            ng2FileSelect [uploader]="myUploader"
+                            (change)="savePhoneWithImage(filteredArray[2])">
+                        <button (click)="myFile.click()" class="btn btn-icon btn-github card-button-photo">
                             <i class="ti-camera"></i>
                         </button>    
                         <div class="card-footer">
@@ -158,7 +174,8 @@
         <div class="row">
             <div class="col-lg-4 col-sm-6">
                 <div *ngIf="entryInDatabase[3]; else noEntry3">
-                    <div [@fadeInOut]="state" class="entry-card card overlay">
+                    <div [@fadeInOut]="state" class="entry-card card overlay"
+                         [ngStyle]="{ 'background-image': 'url(' + imageDomain + filteredArray[3].image + ')' }">
                         <button [routerLink]="['/dashboard', 
                         'edit', 
                         weekDates[3].getFullYear(), 
@@ -168,7 +185,10 @@
                         class="btn btn-icon btn-github card-button-edit">
                             <i class="ti-pencil"></i>
                         </button>
-                        <button class="btn btn-icon btn-github card-button-photo">
+                        <input type="file" #myFile
+                            ng2FileSelect [uploader]="myUploader"
+                            (change)="savePhoneWithImage(filteredArray[3])">
+                        <button (click)="myFile.click()" class="btn btn-icon btn-github card-button-photo">
                             <i class="ti-camera"></i>
                         </button>    
                         <div class="card-footer">
@@ -201,7 +221,8 @@
             </div>
             <div class="col-lg-4 col-sm-6">
                 <div *ngIf="entryInDatabase[4]; else noEntry4">
-                    <div [@fadeInOut]="state" class="entry-card card overlay">
+                    <div [@fadeInOut]="state" class="entry-card card overlay"
+                         [ngStyle]="{ 'background-image': 'url(' + imageDomain + filteredArray[4].image + ')' }">
                         <button [routerLink]="['/dashboard', 
                         'edit', 
                         weekDates[4].getFullYear(), 
@@ -211,7 +232,10 @@
                         class="btn btn-icon btn-github card-button-edit">
                             <i class="ti-pencil"></i>
                         </button>
-                        <button class="btn btn-icon btn-github card-button-photo">
+                        <input type="file" #myFile
+                            ng2FileSelect [uploader]="myUploader"
+                            (change)="savePhoneWithImage(filteredArray[4])">
+                        <button (click)="myFile.click()" class="btn btn-icon btn-github card-button-photo">
                             <i class="ti-camera"></i>
                         </button>    
                         <div class="card-footer">
@@ -244,7 +268,8 @@
             </div>
             <div class="col-lg-4 col-sm-6">
                 <div *ngIf="entryInDatabase[5]; else noEntry5">
-                    <div [@fadeInOut]="state" class="entry-card card overlay">
+                    <div [@fadeInOut]="state" class="entry-card card overlay"
+                        [ngStyle]="{ 'background-image': 'url(' + imageDomain + filteredArray[5].image + ')' }">
                         <button [routerLink]="['/dashboard', 
                         'edit', 
                         weekDates[5].getFullYear(), 
@@ -254,7 +279,10 @@
                         class="btn btn-icon btn-github card-button-edit">
                             <i class="ti-pencil"></i>
                         </button>
-                        <button class="btn btn-icon btn-github card-button-photo">
+                        <input type="file" #myFile
+                            ng2FileSelect [uploader]="myUploader"
+                            (change)="savePhoneWithImage(filteredArray[5])">
+                        <button (click)="myFile.click()" class="btn btn-icon btn-github card-button-photo">
                             <i class="ti-camera"></i>
                         </button>    
                         <div class="card-footer">
@@ -289,7 +317,8 @@
         <div class="row">
             <div class="col-lg-4 col-sm-6">
                 <div *ngIf="entryInDatabase[6]; else noEntry6">
-                    <div [@fadeInOut]="state" class="entry-card card overlay">
+                    <div [@fadeInOut]="state" class="entry-card card overlay"
+                        [ngStyle]="{ 'background-image': 'url(' + imageDomain + filteredArray[6].image + ')' }">
                         <button [routerLink]="['/dashboard', 
                         'edit', 
                         weekDates[6].getFullYear(), 
@@ -299,7 +328,10 @@
                         class="btn btn-icon btn-github card-button-edit">
                             <i class="ti-pencil"></i>
                         </button>
-                        <button class="btn btn-icon btn-github card-button-photo">
+                        <input type="file" #myFile
+                            ng2FileSelect [uploader]="myUploader"
+                            (change)="savePhoneWithImage(filteredArray[6])">
+                        <button (click)="myFile.click()" class="btn btn-icon btn-github card-button-photo">
                             <i class="ti-camera"></i>
                         </button>    
                         <div class="card-footer">

@@ -1,5 +1,7 @@
 /* Container Styles */
-
+input {
+    display: none;
+}
 .main-content {
     padding: 0px 15px;
 }
@@ -35,14 +37,16 @@
 }
 /* Filled Card Styles */
 
-.entry-card {
+.card {
     height: 337px;
     display: flex;
     flex-direction: column-reverse;
-    background-image: url("../../../assets/img/background.jpg");
     background-size: cover;
     background-position: center;
     position: relative;
+}
+.entry-card1{
+    background-image: url("../../../assets/img/tuesday.jpg");
 }
 .card-date{
     font-size: 40px;
@@ -95,7 +99,7 @@
     visibility: hidden;
     opacity: 0;
 }
-.entry-card:hover > .card-button-edit, .entry-card:hover > .card-button-photo, .entry-card:hover > .card-button-add  {
+.card:hover > .card-button-edit, .card:hover > .card-button-photo, .card:hover > .card-button-add  {
     visibility: visible;
     opacity: 1;
     transition: visibility 0s linear 0s, opacity 500ms;

@@ -9,7 +9,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 
 import { SidebarModule } from './sidebar/sidebar.module';
-import { FixedPluginModule } from './shared/fixedplugin/fixedplugin.module';
 import { FooterModule } from './shared/footer/footer.module';
 import { NavbarModule} from './shared/navbar/navbar.module';
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
@@ -28,7 +27,6 @@ import { EntryApiService } from './services/entry-api.service';
         SidebarModule,
         NavbarModule,
         FooterModule,
-        FixedPluginModule,
         BrowserAnimationsModule
     ],
     declarations: [

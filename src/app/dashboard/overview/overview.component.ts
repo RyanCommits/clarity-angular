@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+import { FileUploader } from 'ng2-file-upload';
 
 import { EntryApiService } from '../../services/entry-api.service';
 import { AuthApiService } from '../../services/auth-api.service';
@@ -77,6 +78,17 @@ declare var $:any;
 })
 
 export class OverviewComponent implements OnInit{
+
+    imageDomain = environment.apiUrl;
+
+    myUploader =
+    new FileUploader(
+      {
+        url: environment.apiUrl + '/api/dashboard',
+        itemAlias: 'entryImage',
+        method: 'PUT'
+      }
+    );
 
     dummyDate = new Date();
 
@@ -246,5 +258,28 @@ export class OverviewComponent implements OnInit{
             return '0' + monthFromArray;
         }
         return monthFromArray;
+    }
+
+    // savePhoneWithImage(/year/month/date)
+    savePhoneWithImage(entry) {
+            console.log(entry);
+            this.myUploader.onBuildItemForm = (item, form) => {
+                // in addition to the image, which is automatically attached
+                // send the entry Id which will act is query in the back
+                form.append('entryId', entry._id);
+            };
+
+            this.myUploader.onSuccessItem = (item, response) => {
+              const fullEntryDetails = JSON.parse(response);
+              console.log('New entry success', fullEntryDetails);
+                // notify the parent about the new phone through the output
+                entry.image = fullEntryDetails.image;
+            };
+
+            this.myUploader.onErrorItem = (item, response) => {
+                console.log('New phone error', response);
+            }
+
+            this.myUploader.uploadAll();
     }
 }

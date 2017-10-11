@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Autosize } from 'ng-autosize';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { OverviewComponent } from './overview/overview.component';
 import { NewEntryComponent } from './new-entry/new-entry.component';
@@ -13,7 +14,8 @@ import { EditEntryComponent } from './edit-entry/edit-entry.component';
     imports: [
         CommonModule,
         RouterModule.forChild(DashboardRoutes),
-        FormsModule
+        FormsModule,
+        FileUploadModule
     ],
     declarations: [OverviewComponent, NewEntryComponent, Autosize, EditEntryComponent]
 })
