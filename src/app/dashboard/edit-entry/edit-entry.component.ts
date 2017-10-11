@@ -34,6 +34,8 @@ export class EditEntryComponent implements OnInit {
 
   ngOnInit() {
 
+    // window.onbeforeunload = function() {window.scrollTo(0,0);}
+
       this.router.events.subscribe((evt) => {
         if (!(evt instanceof NavigationEnd)) {
             return;

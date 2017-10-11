@@ -131,12 +131,7 @@ export class OverviewComponent implements OnInit{
         // find date of previous Monday
         this.getMonday(new Date(), this.weekClickCount);
 
-        this.router.events.subscribe((evt) => {
-            if (!(evt instanceof NavigationEnd)) {
-                return;
-            }
-            window.scrollTo(0, 0)
-        });
+        // window.onbeforeunload = function() {window.scrollTo(0,0);}
 
         //////////////////////////////
         // get all entries of user

@@ -38,60 +38,6 @@ export const ROUTES: RouteInfo[] = [{
             {path: 'icons', title: 'Icons', ab:'I'},
             {path: 'typography', title: 'Typography', ab:'T'}
         ]
-    },{
-        path: '/forms',
-        title: 'Forms',
-        type: 'sub',
-        icontype: 'ti-clipboard',
-        children: [
-            {path: 'regular', title: 'Regular Forms', ab:'RF'},
-            {path: 'extended', title: 'Extended Forms', ab:'EF'},
-            {path: 'validation', title: 'Validation Forms', ab:'VF'},
-            {path: 'wizard', title: 'Wizard', ab:'W'}
-        ]
-    },{
-        path: '/tables',
-        title: 'Tables',
-        type: 'sub',
-        icontype: 'ti-view-list-alt',
-        children: [
-            {path: 'regular', title: 'Regular Tables', ab:'RT'},
-            {path: 'extended', title: 'Extended Tables', ab:'ET'},
-            {path: 'datatables.net', title: 'Datatables.net', ab:'DT'}
-        ]
-    },{
-        path: '/maps',
-        title: 'Maps',
-        type: 'sub',
-        icontype: 'ti-map',
-        children: [
-            {path: 'google', title: 'Google Maps', ab:'GM'},
-            {path: 'fullscreen', title: 'Full Screen Map', ab:'FSM'},
-            {path: 'vector', title: 'Vector Map', ab:'VM'}
-        ]
-    },{
-        path: '/charts',
-        title: 'Charts',
-        type: 'link',
-        icontype: 'ti-gift'
-
-    },{
-        path: '/calendar',
-        title: 'Calendar',
-        type: 'link',
-        icontype: 'ti-calendar'
-    },{
-        path: '/pages',
-        title: 'Pages',
-        type: 'sub',
-        icontype: 'ti-gift',
-        children: [
-            {path: 'timeline', title: 'Timeline Page', ab:'T'},
-            {path: 'user', title: 'User Page', ab:'UP'},
-            {path: 'login', title: 'Login Page', ab:'LP'},
-            {path: 'register', title: 'Register Page', ab:'RP'},
-            {path: 'lock', title: 'Lock Screen Page', ab:'LSP'}
-        ]
     }
 ];
 
