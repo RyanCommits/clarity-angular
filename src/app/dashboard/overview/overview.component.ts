@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
+import { Router, NavigationEnd } from '@angular/router';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { FileUploader } from 'ng2-file-upload';
 
@@ -97,7 +98,7 @@ export class OverviewComponent implements OnInit{
     startDate: Date;
     endDate: Date;
     filteredArray: any;
-    entryInDatabase: any[] = [];
+    entryInDatabase: any[] = [false, false, false, false, false, false, false];
 
     state = 'off';
     monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN",
@@ -111,7 +112,8 @@ export class OverviewComponent implements OnInit{
 
     constructor(
         private entryThang: EntryApiService,
-        private authThang: AuthApiService
+        private authThang: AuthApiService,
+        private router: Router
       ) { }
 
     initCirclePercentage() {
@@ -128,6 +130,13 @@ export class OverviewComponent implements OnInit{
     ngOnInit() {
         // find date of previous Monday
         this.getMonday(new Date(), this.weekClickCount);
+
+        this.router.events.subscribe((evt) => {
+            if (!(evt instanceof NavigationEnd)) {
+                return;
+            }
+            window.scrollTo(0, 0)
+        });
 
         //////////////////////////////
         // get all entries of user
@@ -200,10 +209,12 @@ export class OverviewComponent implements OnInit{
             filteredArray.forEach((oneEntry) => {
                 // compare the time values of each date. Set hours to 0 to standarize times
                 if (oneDay.getTime() === new Date(oneEntry.date + standardizeTimeZone ).setHours(0,0,0,0)) {
-                    cardExists = true
+                    cardExists = oneEntry
                     return;
                 }
             })
+            // we're pushing oneEntry if it exists, and HTML will see if the imageURL
+            // exists. If it does, display image, if not, display default background
             this.entryInDatabase.push(cardExists);
         })
     }
@@ -260,8 +271,8 @@ export class OverviewComponent implements OnInit{
         return monthFromArray;
     }
 
-    // savePhoneWithImage(/year/month/date)
-    savePhoneWithImage(entry) {
+    // savePhoneWithImage(full entry object)
+    saveEntryWithImage(entry) {
             console.log(entry);
             this.myUploader.onBuildItemForm = (item, form) => {
                 // in addition to the image, which is automatically attached
@@ -272,14 +283,15 @@ export class OverviewComponent implements OnInit{
             this.myUploader.onSuccessItem = (item, response) => {
               const fullEntryDetails = JSON.parse(response);
               console.log('New entry success', fullEntryDetails);
-                // notify the parent about the new phone through the output
+                // notify the parent about the new entry through the output
                 entry.image = fullEntryDetails.image;
             };
 
             this.myUploader.onErrorItem = (item, response) => {
-                console.log('New phone error', response);
+                console.log('New entry error', response);
             }
 
             this.myUploader.uploadAll();
     }
+
 }

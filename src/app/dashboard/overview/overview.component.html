@@ -26,10 +26,11 @@
 
         <div class="row">
             <div class="col-lg-4 col-sm-6">
-                <div *ngIf="entryInDatabase[0]; else noEntry0">
+                <div *ngIf="entryInDatabase[0] !== false ; else noEntry0">
                     <!-- Fade animation -->
                     <div [@fadeInOut]="state" class="entry-card0 card overlay" 
-                        [ngStyle]="{ 'background-image': 'url(' + imageDomain + filteredArray[0].image + ')' }">
+                        [ngStyle]="{ 'background-image': entryInDatabase[0].image === 'undefined' ? basic : 'url(' + imageDomain + entryInDatabase[0].image + ')' }">
+                        <!-- If entry image does not exist, make background image the css style -->
                         <!-- button routes to specific URL of each entry -->
                         <button [routerLink]="['/dashboard', 
                         'edit', 
@@ -43,7 +44,7 @@
                         <!-- image upload input. It's hidden, the button myFile.click activates it -->
                         <input type="file" #myFile
                             ng2FileSelect [uploader]="myUploader"
-                            (change)="savePhoneWithImage(filteredArray[0])">
+                            (change)="saveEntryWithImage(entryInDatabase[0])">
                         <button (click)="myFile.click()" class="btn btn-icon btn-github card-button-photo">
                             <i class="ti-camera"></i>
                         </button>    
@@ -79,7 +80,7 @@
             <div class="col-lg-4 col-sm-6">
                 <div *ngIf="entryInDatabase[1]; else noEntry1">
                     <div [@fadeInOut]="state" class="entry-card1 card overlay"
-                         [ngStyle]="{ 'background-image': 'url(' + imageDomain + filteredArray[1].image + ')' }">
+                        [ngStyle]="{ 'background-image': entryInDatabase[1].image === 'undefined' ? basic : 'url(' + imageDomain + entryInDatabase[1].image + ')' }">
                         <button [routerLink]="['/dashboard', 
                         'edit', 
                         weekDates[1].getFullYear(), 
@@ -91,7 +92,7 @@
                         </button>
                         <input type="file" #myFile
                             ng2FileSelect [uploader]="myUploader"
-                            (change)="savePhoneWithImage(filteredArray[1])">
+                            (change)="saveEntryWithImage(entryInDatabase[1])">
                         <button (click)="myFile.click()" class="btn btn-icon btn-github card-button-photo">
                             <i class="ti-camera"></i>
                         </button>    
@@ -125,8 +126,8 @@
             </div>
             <div class="col-lg-4 col-sm-6">
                 <div *ngIf="entryInDatabase[2]; else noEntry2">
-                    <div [@fadeInOut]="state" class="entry-card card overlay"
-                         [ngStyle]="{ 'background-image': 'url(' + imageDomain + filteredArray[2].image + ')' }">
+                    <div [@fadeInOut]="state" class="entry-card2 card overlay"
+                    [ngStyle]="{ 'background-image': entryInDatabase[2].image === 'undefined' ? basic : 'url(' + imageDomain + entryInDatabase[2].image + ')' }">
                         <button [routerLink]="['/dashboard', 
                         'edit', 
                         weekDates[2].getFullYear(), 
@@ -138,7 +139,7 @@
                         </button>
                         <input type="file" #myFile
                             ng2FileSelect [uploader]="myUploader"
-                            (change)="savePhoneWithImage(filteredArray[2])">
+                            (change)="saveEntryWithImage(entryInDatabase[2])">
                         <button (click)="myFile.click()" class="btn btn-icon btn-github card-button-photo">
                             <i class="ti-camera"></i>
                         </button>    
@@ -174,8 +175,8 @@
         <div class="row">
             <div class="col-lg-4 col-sm-6">
                 <div *ngIf="entryInDatabase[3]; else noEntry3">
-                    <div [@fadeInOut]="state" class="entry-card card overlay"
-                         [ngStyle]="{ 'background-image': 'url(' + imageDomain + filteredArray[3].image + ')' }">
+                    <div [@fadeInOut]="state" class="entry-card3 card overlay"
+                    [ngStyle]="{ 'background-image': entryInDatabase[3].image === 'undefined' ? basic : 'url(' + imageDomain + entryInDatabase[3].image + ')' }">
                         <button [routerLink]="['/dashboard', 
                         'edit', 
                         weekDates[3].getFullYear(), 
@@ -187,7 +188,7 @@
                         </button>
                         <input type="file" #myFile
                             ng2FileSelect [uploader]="myUploader"
-                            (change)="savePhoneWithImage(filteredArray[3])">
+                            (change)="saveEntryWithImage(entryInDatabase[3])">
                         <button (click)="myFile.click()" class="btn btn-icon btn-github card-button-photo">
                             <i class="ti-camera"></i>
                         </button>    
@@ -221,8 +222,8 @@
             </div>
             <div class="col-lg-4 col-sm-6">
                 <div *ngIf="entryInDatabase[4]; else noEntry4">
-                    <div [@fadeInOut]="state" class="entry-card card overlay"
-                         [ngStyle]="{ 'background-image': 'url(' + imageDomain + filteredArray[4].image + ')' }">
+                    <div [@fadeInOut]="state" class="entry-card4 card overlay"
+                    [ngStyle]="{ 'background-image': entryInDatabase[4].image === 'undefined' ? basic : 'url(' + imageDomain + entryInDatabase[4].image + ')' }">
                         <button [routerLink]="['/dashboard', 
                         'edit', 
                         weekDates[4].getFullYear(), 
@@ -234,7 +235,7 @@
                         </button>
                         <input type="file" #myFile
                             ng2FileSelect [uploader]="myUploader"
-                            (change)="savePhoneWithImage(filteredArray[4])">
+                            (change)="saveEntryWithImage(entryInDatabase[4])">
                         <button (click)="myFile.click()" class="btn btn-icon btn-github card-button-photo">
                             <i class="ti-camera"></i>
                         </button>    
@@ -268,8 +269,8 @@
             </div>
             <div class="col-lg-4 col-sm-6">
                 <div *ngIf="entryInDatabase[5]; else noEntry5">
-                    <div [@fadeInOut]="state" class="entry-card card overlay"
-                        [ngStyle]="{ 'background-image': 'url(' + imageDomain + filteredArray[5].image + ')' }">
+                    <div [@fadeInOut]="state" class="entry-card5 card overlay"
+                        [ngStyle]="{ 'background-image': entryInDatabase[5].image === 'undefined' ? basic : 'url(' + imageDomain + entryInDatabase[5].image + ')' }">
                         <button [routerLink]="['/dashboard', 
                         'edit', 
                         weekDates[5].getFullYear(), 
@@ -281,7 +282,7 @@
                         </button>
                         <input type="file" #myFile
                             ng2FileSelect [uploader]="myUploader"
-                            (change)="savePhoneWithImage(filteredArray[5])">
+                            (change)="saveEntryWithImage(entryInDatabase[5])">
                         <button (click)="myFile.click()" class="btn btn-icon btn-github card-button-photo">
                             <i class="ti-camera"></i>
                         </button>    
@@ -317,8 +318,8 @@
         <div class="row">
             <div class="col-lg-4 col-sm-6">
                 <div *ngIf="entryInDatabase[6]; else noEntry6">
-                    <div [@fadeInOut]="state" class="entry-card card overlay"
-                        [ngStyle]="{ 'background-image': 'url(' + imageDomain + filteredArray[6].image + ')' }">
+                    <div [@fadeInOut]="state" class="entry-card6 card overlay"
+                        [ngStyle]="{ 'background-image': entryInDatabase[6].image === 'undefined' ? basic : 'url(' + imageDomain + entryInDatabase[6].image + ')' }">
                         <button [routerLink]="['/dashboard', 
                         'edit', 
                         weekDates[6].getFullYear(), 
@@ -330,7 +331,7 @@
                         </button>
                         <input type="file" #myFile
                             ng2FileSelect [uploader]="myUploader"
-                            (change)="savePhoneWithImage(filteredArray[6])">
+                            (change)="saveEntryWithImage(entryInDatabase[6])">
                         <button (click)="myFile.click()" class="btn btn-icon btn-github card-button-photo">
                             <i class="ti-camera"></i>
                         </button>    
@@ -362,31 +363,7 @@
                     </div>
                 </ng-template>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3 col-sm-6">
-                <div class="card card-circle-chart" data-background-color="blue">
-                    <div class="card-header text-center">
-                        <h5 class="card-title">Dashboard</h5>
-                        <p class="description">Monthly sales target</p>
-                    </div>
-                    <div class="card-content">
-                        <div id="chartDashboard" class="chart-circle" data-percent="70">70%</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="card card-circle-chart" data-background-color="green">
-                    <div class="card-header text-center">
-                        <h5 class="card-title">Orders</h5>
-                        <p class="description">Completed</p>
-                    </div>
-                    <div class="card-content">
-                        <div id="chartOrders" class="chart-circle" data-percent="34">34%</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
+            <div class="col-lg-4 col-sm-6">
                 <div class="card card-circle-chart" data-background-color="orange">
                     <div class="card-header text-center">
                         <h5 class="card-title">New Visitors</h5>
@@ -397,14 +374,16 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="card card-circle-chart" data-background-color="brown">
-                    <div class="card-header text-center">
-                        <h5 class="card-title">Subscriptions</h5>
-                        <p class="description">Monthly newsletter</p>
-                    </div>
-                    <div class="card-content">
-                        <div id="chartSubscriptions" class="chart-circle" data-percent="10">10%</div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6">
+                    <div class="card card-circle-chart" data-background-color="brown">
+                        <div class="card-header text-center">
+                            <h5 class="card-title">Subscriptions</h5>
+                            <p class="description">Monthly newsletter</p>
+                        </div>
+                        <div class="card-content">
+                            <div id="chartSubscriptions" class="chart-circle" data-percent="10">10%</div>
+                        </div>
                     </div>
                 </div>
             </div>

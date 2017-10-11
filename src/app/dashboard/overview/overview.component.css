@@ -45,8 +45,26 @@ input {
     background-position: center;
     position: relative;
 }
+.entry-card0{
+    background-image: url("../../../assets/img/monday.jpg");
+}
 .entry-card1{
     background-image: url("../../../assets/img/tuesday.jpg");
+}
+.entry-card2{
+    background-image: url("../../../assets/img/wednesday.jpg");
+}
+.entry-card3{
+    background-image: url("../../../assets/img/thursday.jpg");
+}
+.entry-card4{
+    background-image: url("../../../assets/img/friday.jpg");
+}
+.entry-card5{
+    background-image: url("../../../assets/img/saturday.jpg");
+}
+.entry-card6{
+    background-image: url("../../../assets/img/sunday.jpg");
 }
 .card-date{
     font-size: 40px;
@@ -134,7 +152,7 @@ input {
     visibility: visible;
     opacity: 1;
 }
-.entry-card:hover > .empty-prompt  {
+.card:hover > .empty-prompt  {
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s linear 300ms, opacity 300ms;

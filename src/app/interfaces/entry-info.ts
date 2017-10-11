@@ -1,6 +1,6 @@
 export interface EntryInfo {
     entryDate: String;
-    // entryImage: string;
+    entryImage: String;
     entryGrateful: any[];
     entryWillAccomplish: any[];
     entryAffirmation: String;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { EntryInfo } from '../../interfaces/entry-info';
 import { EntryApiService } from '../../services/entry-api.service';
 
@@ -12,7 +12,7 @@ export class EditEntryComponent implements OnInit {
 
     newEntry: EntryInfo = {
       entryDate: '',
-      // entryImage: string;
+      entryImage: 'undefined',
       entryGrateful: ['', '', ''],
       entryWillAccomplish: ['', '', ''],
       entryAffirmation: '',
@@ -28,10 +28,19 @@ export class EditEntryComponent implements OnInit {
   constructor(
     private activatedThang: ActivatedRoute,
     private routerThang: Router,
-    private entryThang: EntryApiService
+    private entryThang: EntryApiService,
+    private router: Router
   ) { }
 
   ngOnInit() {
+
+      this.router.events.subscribe((evt) => {
+        if (!(evt instanceof NavigationEnd)) {
+            return;
+        }
+        window.scrollTo(0, 0)
+    });
+
     this.activatedThang.params
     .subscribe(
       (myParams) => {

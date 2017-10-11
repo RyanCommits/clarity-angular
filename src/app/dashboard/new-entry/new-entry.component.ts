@@ -13,7 +13,7 @@ export class NewEntryComponent implements OnInit {
     // define variables to be completed
     newEntry: EntryInfo = {
         entryDate: '',
-        // entryImage: string;
+        entryImage: 'undefined',
         entryGrateful: [],
         entryWillAccomplish: [],
         entryAffirmation: '',
