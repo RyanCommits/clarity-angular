@@ -126,7 +126,7 @@ input {
 /* Empty Card Styles */
 
 .empty {
-    background-image: null;
+    background-image: none;
 }
 .card-button-add{
     left: 50%;

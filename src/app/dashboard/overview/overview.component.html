@@ -378,11 +378,11 @@
                 <div class="col-lg-4 col-sm-6">
                     <div class="card card-circle-chart" data-background-color="brown">
                         <div class="card-header text-center">
-                            <h5 class="card-title">Subscriptions</h5>
-                            <p class="description">Monthly newsletter</p>
+                            <h5 class="card-title">Average Daily Rating</h5>
+                            <p class="description">{{ fullMonthNames[weekDates[0].getMonth()] }} </p>
                         </div>
                         <div class="card-content">
-                            <div id="chartSubscriptions" class="chart-circle" data-percent="10">10%</div>
+                            <div id="chartSubscriptions" class="chart-circle" data-percent="10">{{ averageRating }} / 10</div>
                         </div>
                     </div>
                 </div>

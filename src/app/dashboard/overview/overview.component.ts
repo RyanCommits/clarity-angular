@@ -106,6 +106,7 @@ export class OverviewComponent implements OnInit{
     // variable for stats in the 2 cards
     percentDone: Number;
     daysInMonth: Number;
+    averageRating: any;
 
     state = 'off';
     monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN",
@@ -196,7 +197,7 @@ export class OverviewComponent implements OnInit{
     // filter entries array based on date range. Date ranger provided by getMonday function
     filterEntries(entriesArray, startDate, endDate) {
         const standardizeTimeZone = this.dummyDate.toLocaleTimeString('en-us', {timeZoneName:'short'}).split(' ')[2]
-        this.filteredArray = entriesArray.filter(function (oneEntry) {
+        this.filteredArray = entriesArray.filter((oneEntry) => {
             // turn oneEntry.date into a Date object, in order to boolean compare
             const datify = new Date(oneEntry.date + standardizeTimeZone)
             return datify >= startDate && datify <= endDate
@@ -323,7 +324,7 @@ export class OverviewComponent implements OnInit{
         })
 
         this.percentEntriesByMonth(endDate);
-        console.log(this.filteredByMonthArray);
+        this.averageDayRating();
     }
 
     // used to calculate percentage of entries are done in given month
@@ -331,5 +332,29 @@ export class OverviewComponent implements OnInit{
         this.percentDone = Math.round(this.filteredByMonthArray.length / daysInMonth.getDate() * 100);
         this.daysInMonth = daysInMonth.getDate();
         console.log(this.percentDone);
+    }
+
+    // calculates monthly daily rating
+    averageDayRating() {
+        // fills ratingsArray with only entries that have day ratings
+        const ratingsArray = this.filteredByMonthArray.filter((oneEntry) => {
+            return oneEntry.rating !== null;
+        });
+
+        let ratingsTotal = 0;
+
+        // Add the ratings of each day
+        ratingsArray.forEach((oneEntry) => {
+            ratingsTotal += oneEntry.rating;
+        });
+
+        // Divide by total days
+        this.averageRating = (ratingsTotal / ratingsArray.length).toFixed(1)
+
+        // if no ratings, set to 0
+        if (isNaN(this.averageRating)) {
+            this.averageRating = 0;
+        }
+        console.log('end value', this.averageRating);
     }
 }
