@@ -159,6 +159,7 @@ export class OverviewComponent implements OnInit{
                 this.filterEntries(this.entries, this.startDate, this.endDate);
                 // create filtered entries by this month
                 this.filterEntriesByMonth(this.entries);
+                setTimeout(() => this.initCirclePercentage(), 500);
             }
         );
 
@@ -172,7 +173,6 @@ export class OverviewComponent implements OnInit{
         );
     }
     ngAfterViewInit() {
-        this.initCirclePercentage();
         // scroll to top when user hits dashboard
         document.querySelector('.main-panel').scrollTop = 0;
     }
