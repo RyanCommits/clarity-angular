@@ -131,8 +131,6 @@ export class OverviewComponent implements OnInit{
         // find date of previous Monday
         this.getMonday(new Date(), this.weekClickCount);
 
-        // window.onbeforeunload = function() {window.scrollTo(0,0);}
-
         //////////////////////////////
         // get all entries of user
         //////////////////////////////
@@ -159,6 +157,7 @@ export class OverviewComponent implements OnInit{
     }
     ngAfterViewInit() {
         this.initCirclePercentage();
+        document.querySelector('.main-panel').scrollTop = 0;
     }
 
     getMonday(date, week) {

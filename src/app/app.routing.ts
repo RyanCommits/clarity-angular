@@ -18,9 +18,6 @@ export const AppRoutes: Routes = [{
         },{
             path: 'components',
             loadChildren: './components/components.module#ComponentsModule'
-        },{
-            path: '',
-            loadChildren: './timeline/timeline.module#TimelineModule'
         }]
         },{
             path: '',
