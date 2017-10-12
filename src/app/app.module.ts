@@ -17,6 +17,7 @@ import { AppRoutes } from './app.routing';
 
 import { AuthApiService } from './services/auth-api.service';
 import { EntryApiService } from './services/entry-api.service';
+import { CalendarTrackService } from './services/calendar-track.service';
 
 @NgModule({
     imports:      [
@@ -36,7 +37,8 @@ import { EntryApiService } from './services/entry-api.service';
     ],
     providers: [
         AuthApiService,
-        EntryApiService
+        EntryApiService,
+        CalendarTrackService
     ],
     bootstrap:    [ AppComponent ]
 })

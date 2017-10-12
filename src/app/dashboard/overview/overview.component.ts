@@ -6,6 +6,7 @@ import { FileUploader } from 'ng2-file-upload';
 
 import { EntryApiService } from '../../services/entry-api.service';
 import { AuthApiService } from '../../services/auth-api.service';
+import { CalendarTrackService } from '../../services/calendar-track.service';
 import { environment } from '../../../environments/environment';
 
 declare var $:any;
@@ -93,7 +94,8 @@ export class OverviewComponent implements OnInit{
 
     dummyDate = new Date();
 
-    weekClickCount = 0;
+    // on init, counter remembers the value from service
+    weekClickCount = this.weekCountService.weekClickCount;
     weekDates: any[] = [];
     startDate: Date;
     endDate: Date;
@@ -113,6 +115,7 @@ export class OverviewComponent implements OnInit{
     constructor(
         private entryThang: EntryApiService,
         private authThang: AuthApiService,
+        private weekCountService: CalendarTrackService,
         private router: Router
       ) { }
 
@@ -157,6 +160,7 @@ export class OverviewComponent implements OnInit{
     }
     ngAfterViewInit() {
         this.initCirclePercentage();
+        // scroll to top when user hits dashboard
         document.querySelector('.main-panel').scrollTop = 0;
     }
 
@@ -185,7 +189,7 @@ export class OverviewComponent implements OnInit{
             const datify = new Date(oneEntry.date + standardizeTimeZone)
             return datify >= startDate && datify <= endDate
         })
-        console.log('filter works', this.filteredArray);
+        // console.log('filter works', this.filteredArray);
         // excute function that compares dates and whether entries exist
         this.doesEntryExist(this.weekDates, this.filteredArray);
     }
@@ -216,32 +220,34 @@ export class OverviewComponent implements OnInit{
 
     // when User clicks next week or previous week
     nextWeek() {
-        this.weekClickCount++;
+        // calls the service counter
+        this.weekCountService.nextWeek();
+        // sets the local variable to the service variable
+        this.weekClickCount = this.weekCountService.weekClickCount
         this.getMonday(new Date(), this.weekClickCount);
         this.filterEntries(this.entries, this.startDate, this.endDate)
     }
 
     prevWeek() {
-        this.weekClickCount--;
+        this.weekCountService.prevWeek();
+        this.weekClickCount = this.weekCountService.weekClickCount
         this.getMonday(new Date(), this.weekClickCount)
         this.filterEntries(this.entries, this.startDate, this.endDate)
     }
     // when User clicks next month or previous month
     nextMonth() {
-        this.weekClickCount = this.weekClickCount + 4;
+        this.weekCountService.nextMonth();
+        this.weekClickCount = this.weekCountService.weekClickCount
         this.getMonday(new Date(), this.weekClickCount);
         this.filterEntries(this.entries, this.startDate, this.endDate)
     }
 
     prevMonth() {
-        this.weekClickCount = this.weekClickCount - 4;
+        this.weekCountService.prevMonth();
+        this.weekClickCount = this.weekCountService.weekClickCount
         this.getMonday(new Date(), this.weekClickCount)
         this.filterEntries(this.entries, this.startDate, this.endDate)
     }
-
-    // delayNextWeek() {
-    //     setTimeout(this.nextWeek(), 3000);
-    // }
 
     // controls states of animation
     onAnimate() {
@@ -267,7 +273,6 @@ export class OverviewComponent implements OnInit{
 
     // savePhoneWithImage(full entry object)
     saveEntryWithImage(entry) {
-            console.log(entry);
             this.myUploader.onBuildItemForm = (item, form) => {
                 // in addition to the image, which is automatically attached
                 // send the entry Id which will act is query in the back
