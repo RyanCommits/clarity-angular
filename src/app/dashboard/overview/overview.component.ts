@@ -99,12 +99,20 @@ export class OverviewComponent implements OnInit{
     weekDates: any[] = [];
     startDate: Date;
     endDate: Date;
+    filteredByMonthArray: any[] = [];
     filteredArray: any;
     entryInDatabase: any[] = [false, false, false, false, false, false, false];
+
+    // variable for stats in the 2 cards
+    percentDone: Number;
+    daysInMonth: Number;
 
     state = 'off';
     monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN",
         "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
+    ];
+    fullMonthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
     ];
 
     // backend request variables
@@ -146,7 +154,11 @@ export class OverviewComponent implements OnInit{
             err => console.error(err),
             // when this.entries is populated, execute callback function that filters
             // dates based on range. Parameters provide start and end date
-            () => this.filterEntries(this.entries, this.startDate, this.endDate)
+            () => {
+                this.filterEntries(this.entries, this.startDate, this.endDate);
+                // create filtered entries by this month
+                this.filterEntriesByMonth(this.entries);
+            }
         );
 
         this.authThang.getLoginStatus()
@@ -226,6 +238,7 @@ export class OverviewComponent implements OnInit{
         this.weekClickCount = this.weekCountService.weekClickCount
         this.getMonday(new Date(), this.weekClickCount);
         this.filterEntries(this.entries, this.startDate, this.endDate)
+        this.filterEntriesByMonth(this.entries)
     }
 
     prevWeek() {
@@ -233,6 +246,7 @@ export class OverviewComponent implements OnInit{
         this.weekClickCount = this.weekCountService.weekClickCount
         this.getMonday(new Date(), this.weekClickCount)
         this.filterEntries(this.entries, this.startDate, this.endDate)
+        this.filterEntriesByMonth(this.entries)
     }
     // when User clicks next month or previous month
     nextMonth() {
@@ -240,6 +254,7 @@ export class OverviewComponent implements OnInit{
         this.weekClickCount = this.weekCountService.weekClickCount
         this.getMonday(new Date(), this.weekClickCount);
         this.filterEntries(this.entries, this.startDate, this.endDate)
+        this.filterEntriesByMonth(this.entries)
     }
 
     prevMonth() {
@@ -247,6 +262,7 @@ export class OverviewComponent implements OnInit{
         this.weekClickCount = this.weekCountService.weekClickCount
         this.getMonday(new Date(), this.weekClickCount)
         this.filterEntries(this.entries, this.startDate, this.endDate)
+        this.filterEntriesByMonth(this.entries)
     }
 
     // controls states of animation
@@ -293,4 +309,27 @@ export class OverviewComponent implements OnInit{
             this.myUploader.uploadAll();
     }
 
+    // create an entry by month so we can run stats
+    filterEntriesByMonth(entriesArray) {
+        const standardizeTimeZone = this.dummyDate.toLocaleTimeString('en-us', {timeZoneName:'short'}).split(' ')[2]
+
+        const startDate = new Date(this.startDate.getFullYear(), this.startDate.getMonth(), 1)
+        const endDate = new Date(this.startDate.getFullYear(), this.startDate.getMonth() + 1, 0);
+
+        this.filteredByMonthArray = entriesArray.filter(function (oneEntry) {
+            // turn oneEntry.date into a Date object, in order to boolean compare
+            const datify = new Date(oneEntry.date + standardizeTimeZone)
+            return datify >= startDate && datify <= endDate
+        })
+
+        this.percentEntriesByMonth(endDate);
+        console.log(this.filteredByMonthArray);
+    }
+
+    // used to calculate percentage of entries are done in given month
+    percentEntriesByMonth(daysInMonth) {
+        this.percentDone = Math.round(this.filteredByMonthArray.length / daysInMonth.getDate() * 100);
+        this.daysInMonth = daysInMonth.getDate();
+        console.log(this.percentDone);
+    }
 }
