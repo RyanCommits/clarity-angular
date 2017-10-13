@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit, AfterViewChecked, AfterContentInit } from '@angular/core';
+import { AuthApiService } from '../services/auth-api.service';
 
 declare var $:any;
 //Metadata
@@ -24,20 +25,6 @@ export const ROUTES: RouteInfo[] = [{
         title: 'Dashboard',
         type: 'link',
         icontype: 'ti-panel'
-    },{
-        path: '/components',
-        title: 'Components',
-        type: 'sub',
-        icontype: 'ti-package',
-        children: [
-            {path: 'buttons', title: 'Buttons', ab:'B'},
-            {path: 'grid', title: 'Grid System', ab:'GS'},
-            {path: 'panels', title: 'Panels', ab:'P'},
-            {path: 'sweet-alert', title: 'Sweet Alert', ab:'SA'},
-            {path: 'notifications', title: 'Notifications', ab:'N'},
-            {path: 'icons', title: 'Icons', ab:'I'},
-            {path: 'typography', title: 'Typography', ab:'T'}
-        ]
     }
 ];
 
@@ -49,6 +36,12 @@ export const ROUTES: RouteInfo[] = [{
 
 export class SidebarComponent {
     public menuItems: any[];
+    userInfo = { firstName: 'Loading...'};
+
+    constructor(
+        private authThang: AuthApiService
+      ) { }
+
     isNotMobileMenu(){
         if($(window).width() > 991){
             return false;
@@ -57,6 +50,17 @@ export class SidebarComponent {
     }
 
     ngOnInit() {
+
+        // dynamic sidebar first name display
+        this.authThang.getLoginStatus()
+        .subscribe(
+        (loggedInInfo: any) => {
+            if (loggedInInfo.isLoggedIn) {
+            this.userInfo = loggedInInfo.userInfo;
+            }
+        }
+    );
+
         var isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
         this.menuItems = ROUTES.filter(menuItem => menuItem);
 

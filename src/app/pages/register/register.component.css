@@ -1,0 +1,24 @@
+.header-text, .media-body, .error {
+    color: white;
+}
+h1 {
+    font-size: 5.2em;
+}
+.wrapper-full-page {
+    background-image: url("../../../assets/img/typewriter.jpg");
+}
+.overlay:before{
+    position: absolute;
+    content:" ";
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    display: block;
+    z-index:0;
+    background-color: rgba(34, 30, 25, 0.8);
+    border-radius: 6px;
+  }
+.btn, .navbar .navbar-nav > li > a.btn {
+    color: white;
+}

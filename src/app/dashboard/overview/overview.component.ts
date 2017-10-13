@@ -331,7 +331,7 @@ export class OverviewComponent implements OnInit{
     percentEntriesByMonth(daysInMonth) {
         this.percentDone = Math.round(this.filteredByMonthArray.length / daysInMonth.getDate() * 100);
         this.daysInMonth = daysInMonth.getDate();
-        console.log(this.percentDone);
+        // console.log(this.percentDone);
     }
 
     // calculates monthly daily rating
@@ -355,6 +355,6 @@ export class OverviewComponent implements OnInit{
         if (isNaN(this.averageRating)) {
             this.averageRating = 0;
         }
-        console.log('end value', this.averageRating);
+        // console.log('end value', this.averageRating);
     }
 }
